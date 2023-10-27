@@ -10,10 +10,12 @@ public class Player : MonoBehaviour
     public bool anchored = false;
     
     private float input;
+    private float normalSpeed;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        normalSpeed = speed;
     }
 
     private void Update()
@@ -21,9 +23,15 @@ public class Player : MonoBehaviour
         input = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.E))
+        {
             anchored = true;
-        else if (Input.GetKeyUp(KeyCode.E))
+            speed = 0;
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
             anchored = false;
+            speed = normalSpeed;
+        }
     }
 
     private void FixedUpdate()

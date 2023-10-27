@@ -15,7 +15,8 @@ public class Ball : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("Player").GetComponentInChildren<Player>();
+        print(player);
     }
 
     private void Start()
@@ -25,25 +26,26 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        CheckIfPlayerAnchored();
-
-        if (!player.anchored)
-        {
             if (collision.gameObject.CompareTag("Player"))
             {
-                float ballPositionX = transform.position.x;
-                float playerPositionX = collision.gameObject.transform.position.x;
+                CheckIfPlayerAnchored();
+                
+                if (!player.anchored)
+                {
+                    float ballPositionX = transform.position.x;
+                    float playerPositionX = collision.gameObject.transform.position.x;
 
-                //calculates bouncePosition from ball on X Axis & multiplies it with the current player velocity.x
-                float bouncePositionX = ballPositionX - playerPositionX;
-                float bounceVelocityX = bouncePositionX * (collision.relativeVelocity.x + 1);
+                    //calculates bouncePosition from ball on X Axis & multiplies it with the current player velocity.x
+                    float bouncePositionX = ballPositionX - playerPositionX;
+                    float bounceVelocityX = bouncePositionX * (collision.relativeVelocity.x + 1);
 
-                float currentSpeed = rigidbody2D.velocity.magnitude;
-                Vector2 newDirection = new Vector2(rigidbody2D.velocity.x + bounceVelocityX * deflection, rigidbody2D.velocity.y);
+                    float currentSpeed = rigidbody2D.velocity.magnitude;
+                    Vector2 newDirection = new Vector2(rigidbody2D.velocity.x + bounceVelocityX * deflection, rigidbody2D.velocity.y);
 
-                rigidbody2D.velocity = newDirection.normalized * currentSpeed;
+                    rigidbody2D.velocity = newDirection.normalized * currentSpeed;
+                }
             }
-        }
+        
         if (collision.gameObject.CompareTag("Brick"))
         {
             gameManager.AddPoint();
