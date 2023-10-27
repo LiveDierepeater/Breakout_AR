@@ -146,4 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15ea261415c6c44c9098ff0d80bf4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialVelocity: {x: 0, y: 20}
+  initialVelocity: {x: 0, y: 30}
+  deflection: 0.58
