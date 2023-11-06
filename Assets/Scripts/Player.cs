@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D rigidbody2D;
+    public Ball standartBall;
 
     public float speed = 15f;
     public bool anchored = false;
@@ -12,10 +13,24 @@ public class Player : MonoBehaviour
     private float input;
     private float normalSpeed;
 
+    public int startHP = 3;
+    private int currentHP;
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         normalSpeed = speed;
+        currentHP = startHP;
+    }
+    private void Start()
+    {
+        Ball newBall = Instantiate(standartBall, Vector3.up, transform.rotation);
+        newBall.OnBallOut += Ball_OnBallOut;
+    }
+
+    private void Ball_OnBallOut()
+    {
+        CheckHP();
     }
 
     private void Update()
@@ -37,5 +52,26 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbody2D.velocity = new Vector2(input * speed, 0);
+    }
+
+    private void SpawnNewBall()
+    {
+        Ball newBall = Instantiate(standartBall, Vector3.up * 3, transform.rotation);
+        newBall.OnBallOut += Ball_OnBallOut;
+        newBall.gameObject.name = "Ball_" + newBall.GetInstanceID().ToString();
+    }
+
+    private void CheckHP()
+    {
+        if (currentHP > 1)
+        {
+            currentHP--;
+            SpawnNewBall();
+        }
+        else if (currentHP == 1)
+        {
+            currentHP--;
+            print("DEAD!: " + currentHP);
+        }
     }
 }

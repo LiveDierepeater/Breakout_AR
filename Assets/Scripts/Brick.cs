@@ -5,17 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Brick : MonoBehaviour
 {
-    private GameManager gameManager;
+    public delegate void BrickHitDelegate(Brick brickThatWasHit);
+    public event BrickHitDelegate OnBrickHit;
 
-    private void Awake()
-    {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.activeBricks++;
-    }
+    public int value = 1;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameManager.activeBricks--;
-        DestroyObject(gameObject);
+        gameObject.SetActive(false);
+
+        OnBrickHit?.Invoke(this);
     }
 }

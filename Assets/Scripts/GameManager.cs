@@ -5,77 +5,49 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject standartBall;
+    private CanvasManager canvasManager;
+    private BrickManager brickManager;
 
     private int points;
-    private int startHP = 3;
-    private int currentHP;
-
-    public int activeBricks;
-
-    public Vector3 spawnPosition;
 
     private void Awake()
     {
-        currentHP = startHP;
-        spawnPosition = new Vector3(0, 1, 0);
+        canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
+        brickManager = GameObject.Find("BrickManager").GetComponent<BrickManager>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        // Level Reset Button
         if (Input.GetKey(KeyCode.R))
             ReloadLevel();
-
-        if (activeBricks == 0)
-        {
-            print("All bricks destroyed");
-            LoadNextScene();
-        }
     }
 
-    public void AddPoint()
+    public void CalculatePoints(int value)
     {
-        points++;
+        //TODO: Later different Brick "Value" will have different outcome to "Points"
+        points += value;
+        
+        canvasManager.OverridePoints(points);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // TODO: move this somewhere else?
+    public void LoadNextScene()
     {
-        if (currentHP > 1)
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int targetSceneIndex = currentSceneIndex + 1;
+
+        // [insert reason why we wrap back to scene 0]
+        if (targetSceneIndex >= SceneManager.sceneCountInBuildSettings)
         {
-            currentHP--;
-            print("Current HP: " + currentHP);
-            SpawnNewBall();
+            targetSceneIndex = 0;
         }
-        else if (currentHP == 1)
-        {
-            currentHP--;
-            print("DEAD!: " + currentHP);
-            ReloadLevel();
-        }
+
+        SceneManager.LoadScene(targetSceneIndex);
     }
 
     private void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    private void SpawnNewBall()
-    {
-        GameObject newball = Instantiate(standartBall);
-        newball.transform.position = spawnPosition;
-    }
-
-    void LoadNextScene()
-    {
-        int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        int targetSceneBuildIndex = currentSceneBuildIndex + 1;
-
-        //check if target index is out of bounds.   [When there is no more next scene, set targetSceneBuildIndex to first scene]
-        if (targetSceneBuildIndex >= SceneManager.sceneCountInBuildSettings)
-        {
-            targetSceneBuildIndex = 0;
-        }
-
-        SceneManager.LoadScene(targetSceneBuildIndex);
     }
 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public delegate void BallOutDelegate();
+    public event BallOutDelegate OnBallOut;
+
     Rigidbody2D rigidbody2D;
-    GameManager gameManager;
     Player player;
 
     public Vector2 initialVelocity = Vector2.up * 5;
@@ -14,9 +16,7 @@ public class Ball : MonoBehaviour
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
-        print(player);
     }
 
     private void Start()
@@ -45,15 +45,11 @@ public class Ball : MonoBehaviour
                     rigidbody2D.velocity = newDirection.normalized * currentSpeed;
                 }
             }
-        
-        if (collision.gameObject.CompareTag("Brick"))
-        {
-            gameManager.AddPoint();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        OnBallOut?.Invoke();
         Destroy(gameObject);
     }
 
