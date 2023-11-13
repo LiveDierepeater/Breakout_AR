@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2164634490597817}
   - component: {fileID: 482532279626787437}
   - component: {fileID: 132888463953399546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5919501712401221777}
   - component: {fileID: 1158947292968537508}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8567949913923865114}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -322,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 8821466966201748100, guid: bf72fc96268127444bbcb463762db55c, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821466966201748100, guid: bf72fc96268127444bbcb463762db55c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf72fc96268127444bbcb463762db55c, type: 3}

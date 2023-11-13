@@ -18,7 +18,7 @@ public class CanvasManager : MonoBehaviour
 
     private void Start()
     {
-        currentWaveUI.text = waveName + waveNumbre.ToString();
+        currentWaveUI.text = waveName + waveNumbre;
         pointsUI.text = pointName + "0";
         hpUI.text = "3" + hpName;
     }
@@ -28,13 +28,13 @@ public class CanvasManager : MonoBehaviour
         pointsUI.text = pointName + points;
     }
 
-    public void SetWaveNumbre(int currentWave)
+    public void NextWaveNumbre()
     {
-
+        currentWaveUI.text = waveName + (waveNumbre += 1);
     }
 
     public void OverrideHP(int hP)
     {
-
+        hpUI.text = hP + hpName;
     }
 }

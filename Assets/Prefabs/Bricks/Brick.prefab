@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2088004205726461535}
   - component: {fileID: 3281888923804490747}
-  m_Layer: 0
-  m_Name: Brick
+  m_Layer: 8
+  m_Name: Brick_Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,8 @@ GameObject:
   - component: {fileID: 2974664815872076860}
   - component: {fileID: 2974664815872076857}
   - component: {fileID: 2974664815872076862}
-  m_Layer: 0
+  - component: {fileID: 6693172804512397647}
+  m_Layer: 8
   m_Name: Brick
   m_TagString: Brick
   m_Icon: {fileID: 0}
@@ -210,6 +211,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a4f36c12800a747b73a5d79a529071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 1
+--- !u!114 &6693172804512397647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2974664815872076861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907a346964c202549b71a0a86a164d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupPrefab: {fileID: 3145351469095868157, guid: e616c29c0e7ec0642884b2b82b819ef8, type: 3}
 --- !u!1 &5972373682104471216
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +235,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5985894006783385368}
   - component: {fileID: 3658753500220114698}
-  m_Layer: 0
-  m_Name: Brick (1)
+  m_Layer: 8
+  m_Name: Brick_Highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

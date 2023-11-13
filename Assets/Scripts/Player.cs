@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    GameManager gameManager;
+
     Rigidbody2D rigidbody2D;
     public Ball standartBall;
 
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         normalSpeed = speed;
         currentHP = startHP;
@@ -74,5 +77,7 @@ public class Player : MonoBehaviour
             currentHP--;
             print("DEAD!: " + currentHP);
         }
+        
+        gameManager.OverrideHP(currentHP);
     }
 }

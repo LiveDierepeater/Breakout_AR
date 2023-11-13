@@ -6,14 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private CanvasManager canvasManager;
-    private BrickManager brickManager;
 
     private int points;
 
     private void Awake()
     {
         canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
-        brickManager = GameObject.Find("BrickManager").GetComponent<BrickManager>();
     }
 
     private void Update()
@@ -21,6 +19,11 @@ public class GameManager : MonoBehaviour
         // Level Reset Button
         if (Input.GetKey(KeyCode.R))
             ReloadLevel();
+    }
+
+    public void OverrideHP(int currentHP)
+    {
+        canvasManager.OverrideHP(currentHP);
     }
 
     public void CalculatePoints(int value)
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     // TODO: move this somewhere else?
     public void LoadNextScene()
     {
+        /*
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int targetSceneIndex = currentSceneIndex + 1;
 
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(targetSceneIndex);
+        */
+        canvasManager.NextWaveNumbre();
     }
 
     private void ReloadLevel()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,11 +52,35 @@ public class BrickManager : MonoBehaviour
 
         if (AreAnyBricksActive() == false)
         {
+            GenerateNextWave();
             gameManager.LoadNextScene();
         }
     }
 
-    bool AreAnyBricksActive()
+    private void GenerateNextWave()
+    {
+        // TODO: Delete all unactive Bricks
+        ClearAllBricks();
+
+        // TODO: Generate Brick Formation (anzahl x und y | bestimmte reihen nicht benutzen | steigend immer mehr bricks bis zu einem gewissen punkt)
+
+
+        // TODO: Generate new Bricks
+        SpawnBricks();
+    }
+
+    private void ClearAllBricks()
+    {
+        foreach (Brick brick in bricks)
+        {
+            if (brick != null)
+                Destroy(brick.gameObject);
+        }
+
+        bricks.Clear();
+    }
+
+    private bool AreAnyBricksActive()
     {
         foreach (Brick brick in bricks)
         {
