@@ -29,11 +29,6 @@ public class Player : MonoBehaviour
         newBall.OnBallOut += Ball_OnBallOut;
     }
 
-    private void Ball_OnBallOut()
-    {
-        CheckHP();
-    }
-
     private void Update()
     {
         input = Input.GetAxis("Horizontal");
@@ -60,6 +55,11 @@ public class Player : MonoBehaviour
         Ball newBall = Instantiate(standartBall, Vector3.up * 3, transform.rotation);
         newBall.OnBallOut += Ball_OnBallOut;
         newBall.gameObject.name = "Ball_" + newBall.GetInstanceID().ToString();
+    }
+
+    private void Ball_OnBallOut()
+    {
+        CheckHP();
     }
 
     private void CheckHP()
