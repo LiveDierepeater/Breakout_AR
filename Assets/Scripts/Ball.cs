@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour
     public delegate void BallOutDelegate();
     public event BallOutDelegate OnBallOut;
 
-    private Rigidbody2D rigidbody2D;
+    private new Rigidbody2D rigidbody2D;
     private Player player;
 
     public Vector2 initialVelocity = Vector2.up * 5;
