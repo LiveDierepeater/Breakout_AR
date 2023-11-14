@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public int GetCurrentWaveNumbre()
+    public int GetCurrentWaveNumber()
     {
-        return canvasManager.GetCurrentWaveNumbre();
+        return canvasManager.GetCurrentWaveNumber();
     }
 }

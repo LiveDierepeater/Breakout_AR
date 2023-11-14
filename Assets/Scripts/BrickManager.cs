@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BrickManager : MonoBehaviour
@@ -6,12 +5,13 @@ public class BrickManager : MonoBehaviour
     public Brick brickPrefab;
 
     public Vector2Int amount;
+    public Vector2Int brickMatrix = new Vector2Int(9, 13);
     public Vector2 padding;
 
-    private List<Brick> bricks;
+    Brick[,] brickArray;
     private GameManager gameManager;
 
-    private int currentWaveNumbre;
+    private int currentWaveNumber;
 
     private void Awake()
     {
@@ -20,32 +20,7 @@ public class BrickManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnBricks();
-    }
-
-    void SpawnBricks()
-    {
-        bricks = new List<Brick>();
-
-        for (int y = 0; y < amount.y; y++)
-        {
-            for (int x = 0; x < amount.x; x++)
-            {
-                Brick newBrick = Instantiate(brickPrefab);
-
-                newBrick.OnBrickHit += Brick_OnBrickHit;
-
-                Vector3 brickScale = newBrick.transform.localScale;
-                
-                newBrick.transform.position = transform.position
-                    + (Vector3.right * x * brickScale.x)
-                    + (Vector3.right * x * padding.x)
-                    + (Vector3.up * y * brickScale.y)
-                    + (Vector3.up * y * padding.y);
-
-                bricks.Add(newBrick);
-            }
-        }
+        SpawnNewBricks();
     }
 
     private void Brick_OnBrickHit(Brick brick)
@@ -64,61 +39,91 @@ public class BrickManager : MonoBehaviour
         // Delete all unactive Bricks
         ClearAllBricks();
         
-        // TODO: Generate Brick Formation (anzahl x und y | bestimmte reihen nicht benutzen | steigend immer mehr bricks von wave zu wave bis zu einem gewissen punkt)
-        GenerateNewBrickFormation();
-        
-        // TODO: Generate new Bricks
-        SpawnBricks();
+        // Generate new Bricks
+        SpawnNewBricks();
     }
 
     // Destroying all Bricks AND THEN clearing <list> "bricks"
     private void ClearAllBricks()
     {
-        foreach (Brick brick in bricks)
+        for (int x = 0; x < brickMatrix.x; x++)
         {
-            if (brick != null)
+            for (int y = 0; y < brickMatrix.y; y++)
+            {
+                Brick brick = brickArray[x, y];
+                brickArray.SetValue(null, x, y);
                 Destroy(brick.gameObject);
+            }
+        }
+    }
+
+    private void SpawnNewBricks()
+    {
+        // Look in which wave we are. Compare to previous amount of bricks in wave.
+            // Create "BRICK MATRIX" to format bricks. Create an "INDEX OF OMIT" (out of "waveNumber") which will let out rows or columns.
+
+        int column, rows;
+        column = brickMatrix.x;
+        rows = brickMatrix.y;
+        brickArray = new Brick[column, rows];
+        
+        currentWaveNumber = GetCurrentWaveNumber();
+        int omitIndex = 13 - currentWaveNumber;
+        if (omitIndex < 0) omitIndex = 0;
+        
+        
+        // Create formation in consideration of "INDEX OF OMIT".
+        
+        for (int x = 0; x < column; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                Brick newBrick = Instantiate(brickPrefab);
+
+                newBrick.OnBrickHit += Brick_OnBrickHit;
+
+                Vector3 brickScale = newBrick.transform.localScale;
+                
+                newBrick.transform.position = transform.position
+                                              + (Vector3.right * y * brickScale.x)
+                                              + (Vector3.right * y * padding.x)
+                                              + (Vector3.up * x * brickScale.y)
+                                              + (Vector3.up * x * padding.y);
+
+                brickArray.SetValue(newBrick, x, y);
+            }
         }
 
-        bricks.Clear();
-    }
+        
+        
+        // Disable Bricks dependent from "INDEX OF OMIT".
 
-    private void GenerateNewBrickFormation()
-    {
-        // TODO: Look in which wave we are. Compare to previous amount of bricks in wave.
-            // TODO: Create "BRICK MATRIX" to format bricks. Create an "INDEX OF OMIT" which will let out rows or columns.
-        
-        
-        
-        
-        // TODO: Decide how many rows and columns will get generated.
-        
-        // TODO: Create formation in consideration of "INDEX OF OMIT".
-        
-        // TODO: Give important information to next function() to spawn new bricks.
+        int rowsToSpawn = brickMatrix.y - omitIndex;
+
+        for (int x = rowsToSpawn; x < column; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                Brick brick = brickArray[x, y];
+                brick.gameObject.SetActive(false);
+            }
+        }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     private bool AreAnyBricksActive()
     {
-        foreach (Brick brick in bricks)
+        for (int x = 0; x < brickMatrix.x; x++)
         {
-            if (brick.gameObject.activeSelf) return true;
+            for (int y = 0; y < brickMatrix.y; y++)
+            {
+                if (brickArray[x, y].gameObject.activeSelf) return true;
+            }
         }
-
         return false;
     }
 
-    private void GetCurrentWaveNumbre()
+    private int GetCurrentWaveNumber()
     {
-        currentWaveNumbre = gameManager.GetCurrentWaveNumbre();
+        return gameManager.GetCurrentWaveNumber();
     }
 }
