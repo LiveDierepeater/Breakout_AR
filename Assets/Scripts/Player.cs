@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,20 +9,20 @@ public class Player : MonoBehaviour
     public Ball standartBall;
 
     public float speed = 15f;
-    public bool anchored = false;
+    public bool anchored;
     
     private float input;
     private float normalSpeed;
 
-    public int startHP = 3;
-    private int currentHP;
+    public int startHitPoints = 3;
+    private int currentHitPoints;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         normalSpeed = speed;
-        currentHP = startHP;
+        currentHitPoints = startHitPoints;
     }
     private void Start()
     {
@@ -62,22 +60,41 @@ public class Player : MonoBehaviour
 
     private void Ball_OnBallOut()
     {
-        CheckHP();
+        CheckHitPoints();
     }
 
-    private void CheckHP()
+    private void CheckHitPoints()
     {
-        if (currentHP > 1)
+        if (currentHitPoints > 1)
         {
-            currentHP--;
+            currentHitPoints--;
             SpawnNewBall();
         }
-        else if (currentHP == 1)
+        else if (currentHitPoints == 1)
         {
-            currentHP--;
-            print("DEAD!: " + currentHP);
+            currentHitPoints--;
+            print("DEAD!: " + currentHitPoints);
         }
         
-        gameManager.OverrideHP(currentHP);
+        gameManager.OverrideHP(currentHitPoints);
+    }
+    
+    public void ApplyPowerup(Powerup powerup)
+    {
+        print("received powerup");
+
+        switch (powerup.type)
+        {
+            case Powerup.PowerupType.None:
+                break;
+            
+            case Powerup.PowerupType.Stretch:
+                transform.localScale += Vector3.right * 0.25f;
+                break;
+            
+            case Powerup.PowerupType.Shrink:
+                transform.localScale -= Vector3.right * 0.25f;
+                break;
+        }
     }
 }

@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public enum PowerupType
     {
-        if (collision.gameObject.name == "GameManager")
-        {
-            Destroy(this.gameObject);
-        }
+        None,
+        Stretch,
+        Shrink,
     }
 
+    public PowerupType type;
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player")) return;
+        
+        Player player = collision.gameObject.GetComponent<Player>();
+        player.ApplyPowerup(this);
+
+        Destroy(gameObject);
+    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
@@ -23,4 +34,5 @@ public class Powerup : MonoBehaviour
     {
         player.transform.localScale *= 1.1f;
     }
+    
 }
