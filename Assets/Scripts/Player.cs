@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
             print("DEAD!: " + currentHitPoints);
         }
         
-        gameManager.OverrideHP(currentHitPoints);
+        gameManager.OverrideHitPoints(currentHitPoints);
     }
     
     public void ApplyPowerup(Powerup powerup)

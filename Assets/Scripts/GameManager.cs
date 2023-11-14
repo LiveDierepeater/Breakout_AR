@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,9 +19,9 @@ public class GameManager : MonoBehaviour
             ReloadLevel();
     }
 
-    public void OverrideHP(int currentHP)
+    public void OverrideHitPoints(int currentHitPoints)
     {
-        canvasManager.OverrideHP(currentHP);
+        canvasManager.OverrideHP(currentHitPoints);
     }
 
     public void CalculatePoints(int value)
@@ -55,5 +53,10 @@ public class GameManager : MonoBehaviour
     private void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public int GetCurrentWaveNumbre()
+    {
+        return canvasManager.GetCurrentWaveNumbre();
     }
 }
