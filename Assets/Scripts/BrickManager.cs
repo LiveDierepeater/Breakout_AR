@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,10 +33,12 @@ public class BrickManager : MonoBehaviour
 
                 newBrick.OnBrickHit += Brick_OnBrickHit;
 
+                Vector3 brickScale = newBrick.transform.localScale;
+                
                 newBrick.transform.position = transform.position
-                    + (Vector3.right * x * newBrick.transform.localScale.x)
+                    + (Vector3.right * x * brickScale.x)
                     + (Vector3.right * x * padding.x)
-                    + (Vector3.up * y * newBrick.transform.localScale.y)
+                    + (Vector3.up * y * brickScale.y)
                     + (Vector3.up * y * padding.y);
 
                 bricks.Add(newBrick);
