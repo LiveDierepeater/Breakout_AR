@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -33,7 +31,7 @@ public class CanvasManager : MonoBehaviour
         currentWaveUI.text = waveName + (currentWaveNumbre += 1);
     }
 
-    public void OverrideHP(int hP)
+    public void OverrideHitPoints(int hP)
     {
         hpUI.text = hP + hpName;
     }

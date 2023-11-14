@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void OverrideHitPoints(int currentHitPoints)
     {
-        canvasManager.OverrideHP(currentHitPoints);
+        canvasManager.OverrideHitPoints(currentHitPoints);
     }
 
     public void CalculatePoints(int value)

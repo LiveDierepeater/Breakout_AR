@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,8 +6,8 @@ public class Ball : MonoBehaviour
     public delegate void BallOutDelegate();
     public event BallOutDelegate OnBallOut;
 
-    Rigidbody2D rigidbody2D;
-    Player player;
+    private Rigidbody2D rigidbody2D;
+    private Player player;
 
     public Vector2 initialVelocity = Vector2.up * 5;
     public float deflection = 1f;

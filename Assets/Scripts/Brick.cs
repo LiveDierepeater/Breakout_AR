@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Brick : MonoBehaviour
 {
@@ -10,7 +7,7 @@ public class Brick : MonoBehaviour
 
     public int value = 1;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D()
     {
         gameObject.SetActive(false);
 
