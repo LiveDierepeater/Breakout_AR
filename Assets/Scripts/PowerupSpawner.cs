@@ -26,7 +26,6 @@ public class PowerupSpawner : MonoBehaviour
 
     void SpawnPowerup()
     {
-        //print("Powerup spawned.");
         int randomIndex = Random.Range(0, powerupPrefabs.Length);
         Instantiate(powerupPrefabs[randomIndex], transform.position, Quaternion.identity);
     }
