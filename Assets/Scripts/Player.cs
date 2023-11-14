@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    GameManager gameManager;
+    private GameManager gameManager;
+    private Rigidbody2D rigidbody2D;
 
-    Rigidbody2D rigidbody2D;
     public Ball standartBall;
 
     public float speed = 15f;
