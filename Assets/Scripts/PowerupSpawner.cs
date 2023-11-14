@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerupSpawner : MonoBehaviour
 {
     Brick brick;
 
-    public GameObject powerupPrefab;
+    [Range(0, 1f)]
+    public float spawnChance = 0.5f;
+    
+    public Powerup[] powerupPrefabs;
 
     private void Awake()
     {
@@ -19,15 +20,14 @@ public class PowerupSpawner : MonoBehaviour
 
     private void Brick_OnBrickHit(Brick brickThatWasHit)
     {
-        int diceRoll = Random.Range(0, 6);
-        if (diceRoll == 0)
-        {
-        }
-        SpawnPowerup();
+        bool willSpawnPowerup = Random.Range(0, 1f) <= spawnChance;
+        if (willSpawnPowerup) SpawnPowerup();
     }
 
     void SpawnPowerup()
     {
-        Instantiate(powerupPrefab, transform.position, Quaternion.identity);
+        //print("Powerup spawned.");
+        int randomIndex = Random.Range(0, powerupPrefabs.Length);
+        Instantiate(powerupPrefabs[randomIndex], transform.position, Quaternion.identity);
     }
 }
