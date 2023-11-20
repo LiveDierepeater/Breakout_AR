@@ -15,8 +15,9 @@ public class BrickManager : MonoBehaviour
     private int currentWaveNumber;
     private int rows, columns;
     
+    public Action<int> OnScoreChanged;
     private int internalCurrentScore;
-
+    
     private int CurrentScore
     {
         get => internalCurrentScore;
@@ -27,13 +28,11 @@ public class BrickManager : MonoBehaviour
         }
     }
     
-    public Action<int> OnScoreChanged;
-    
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-
+    
     private void Start()
     {
         SpawnNewBricks();
@@ -41,8 +40,6 @@ public class BrickManager : MonoBehaviour
 
     private void Brick_OnBrickHit(Brick brick)
     {
-        gameManager.CalculatePoints(brick.value);
-
         CurrentScore += 1;
         
         if (AreAnyBricksActive() == false)

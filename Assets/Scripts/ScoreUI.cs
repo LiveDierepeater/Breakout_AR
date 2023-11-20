@@ -7,11 +7,13 @@ public class ScoreUI : MonoBehaviour
     private TextMeshProUGUI textComponent;
     private const string scoreLabel = "Score:";
     
-    public BrickManager brickManager;
+    private BrickManager brickManager;
 
     private void Awake()
     {
         textComponent = GetComponent<TextMeshProUGUI>();
+
+        brickManager = GameObject.Find("BrickManager").GetComponent<BrickManager>();
         
         brickManager.OnScoreChanged += OnScoreChanged;
     }
@@ -21,7 +23,7 @@ public class ScoreUI : MonoBehaviour
         SetScoreText(newScore);
     }
 
-    void SetScoreText(int score)
+    private void SetScoreText(int score)
     {
         textComponent.text = scoreLabel + " " + score;
     }

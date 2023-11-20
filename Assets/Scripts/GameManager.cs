@@ -24,14 +24,6 @@ public class GameManager : MonoBehaviour
         canvasManager.OverrideHitPoints(currentHitPoints);
     }
 
-    public void CalculatePoints(int value)
-    {
-        //TODO: Later different Brick "Value" will have different outcome to "Points"
-        points += value;
-        
-        canvasManager.OverridePoints(points);
-    }
-
     // TODO: move this somewhere else?
     public void LoadNextScene()
     {

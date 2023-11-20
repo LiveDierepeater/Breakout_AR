@@ -4,36 +4,29 @@ using TMPro;
 public class CanvasManager : MonoBehaviour
 {
     public TextMeshProUGUI currentWaveUI;
-    public TextMeshProUGUI pointsUI;
     public TextMeshProUGUI hpUI;
 
-    private const string WaveName = "Wave: ";
+    private const string waveName = "Wave: ";
     private int currentWaveNumber = 1;
 
-    private const string PointName = "Points: ";
+    private const string pointName = "Points: ";
 
-    private const string HpName = " HP";
+    private const string hpName = " HP";
 
     private void Start()
     {
-        currentWaveUI.text = WaveName + currentWaveNumber;
-        pointsUI.text = PointName + "0";
-        hpUI.text = "3" + HpName;
-    }
-
-    public void OverridePoints(int points)
-    {
-        pointsUI.text = PointName + points;
+        currentWaveUI.text = waveName + currentWaveNumber;
+        hpUI.text = "3" + hpName;
     }
 
     public void NextWaveNumber()
     {
-        currentWaveUI.text = WaveName + (currentWaveNumber += 1);
+        currentWaveUI.text = waveName + (currentWaveNumber += 1);
     }
 
     public void OverrideHitPoints(int hP)
     {
-        hpUI.text = hP + HpName;
+        hpUI.text = hP + hpName;
     }
 
     public int GetCurrentWaveNumber()
