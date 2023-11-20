@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BrickManager : MonoBehaviour
@@ -14,6 +15,20 @@ public class BrickManager : MonoBehaviour
     private int currentWaveNumber;
     private int rows, columns;
     
+    private int internalCurrentScore;
+
+    private int CurrentScore
+    {
+        get => internalCurrentScore;
+        set
+        {
+            internalCurrentScore = value;
+            OnScoreChanged?.Invoke(CurrentScore);
+        }
+    }
+    
+    public Action<int> OnScoreChanged;
+    
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -28,6 +43,8 @@ public class BrickManager : MonoBehaviour
     {
         gameManager.CalculatePoints(brick.value);
 
+        CurrentScore += 1;
+        
         if (AreAnyBricksActive() == false)
         {
             GenerateNextWave();
