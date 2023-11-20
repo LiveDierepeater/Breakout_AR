@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,19 @@ public class GameManager : MonoBehaviour
     private CanvasManager canvasManager;
 
     private int points;
+    
+    public event Action<bool> OnUpdradePhaseActive;
+    private bool internalIsInUpgradePhase;
+    
+    public bool IsInUpgradePhase
+    {
+        get => internalIsInUpgradePhase;
+        set
+        {
+            internalIsInUpgradePhase = value;
+            OnUpdradePhaseActive?.Invoke(IsInUpgradePhase);
+        }
+    }
 
     private void Awake()
     {
@@ -24,7 +38,7 @@ public class GameManager : MonoBehaviour
         canvasManager.OverrideHitPoints(currentHitPoints);
     }
 
-    // TODO: move this somewhere else?
+    // TODO: May remove in future?
     public void LoadNextScene()
     {
         canvasManager.NextWaveNumber();

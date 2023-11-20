@@ -5,7 +5,6 @@ public class BrickManager : MonoBehaviour
 {
     public Brick brickPrefab;
 
-    public Vector2Int amount;
     public Vector2Int brickMatrix = new Vector2Int(9, 13);
     public Vector2 padding;
 
@@ -59,6 +58,7 @@ public class BrickManager : MonoBehaviour
         // TODO: Destroy Ball
         
         // TODO: Show Upgrade UI
+        gameManager.IsInUpgradePhase = true;
         
         // When Player presses O.K.
             // TODO: Hide Upgrade UI
