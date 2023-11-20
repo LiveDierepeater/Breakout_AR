@@ -8,10 +8,12 @@ public class UpgradeUI : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.OnUpdradePhaseActive += ActivateUpgradeUI;
+        
+        gameObject.SetActive(false);
     }
 
     private void ActivateUpgradeUI(bool isActive)
     {
-        
+        gameObject.SetActive(true);
     }
 }
