@@ -12,7 +12,8 @@ public class BrickManager : MonoBehaviour
     private GameManager gameManager;
 
     private int currentWaveNumber;
-
+    private int rows, columns;
+    
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -43,15 +44,15 @@ public class BrickManager : MonoBehaviour
         SpawnNewBricks();
     }
 
-    // Destroying all Bricks AND THEN clearing <list> "bricks"
+    // Destroying all Bricks AND THEN clearing bricks-array
     private void ClearAllBricks()
     {
         for (int x = 0; x < brickMatrix.x; x++)
         {
             for (int y = 0; y < brickMatrix.y; y++)
             {
-                Brick brick = brickArray[x, y];
-                brickArray.SetValue(null, x, y);
+                Brick brick = brickArray[y, x];
+                brickArray.SetValue(null, y, x);
                 Destroy(brick.gameObject);
             }
         }
@@ -62,7 +63,7 @@ public class BrickManager : MonoBehaviour
         // Look in which wave we are. Compare to previous amount of bricks in wave.
             // Create "BRICK MATRIX" to format bricks. Create an "INDEX OF OMIT" (out of "waveNumber") which will let out rows or columns.
 
-        int rows, columns;
+        
         rows = brickMatrix.y;
         columns = brickMatrix.x;
         brickArray = new Brick[rows, columns];
@@ -72,7 +73,7 @@ public class BrickManager : MonoBehaviour
         if (omitIndex < 0) omitIndex = 0;
         
         
-        // Create formation in consideration of "INDEX OF OMIT".
+        // Create standard brick formation.
         
         for (int x = 0; x < rows; x++)
         {
@@ -100,11 +101,11 @@ public class BrickManager : MonoBehaviour
 
         int rowsToSpawn = brickMatrix.y - omitIndex;
 
-        for (int x = rowsToSpawn; x < rows; x++)
+        for (int y = rowsToSpawn; y < rows; y++)
         {
-            for (int y = 0; y < columns; y++)
+            for (int x = 0; x < columns; x++)
             {
-                Brick brick = brickArray[x, y];
+                Brick brick = brickArray[y, x];
                 brick.gameObject.SetActive(false);
             }
         }
@@ -112,11 +113,11 @@ public class BrickManager : MonoBehaviour
     
     private bool AreAnyBricksActive()
     {
-        for (int x = 0; x < brickMatrix.x; x++)
+        for (int x = 0; x < columns; x++)
         {
-            for (int y = 0; y < brickMatrix.y; y++)
+            for (int y = 0; y < rows; y++)
             {
-                if (brickArray[x, y].gameObject.activeSelf) return true;
+                if (brickArray[y, x].gameObject.activeSelf) return true;
             }
         }
         return false;
