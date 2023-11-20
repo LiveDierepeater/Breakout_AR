@@ -58,9 +58,10 @@ public class BrickManager : MonoBehaviour
         SpawnNewBricks();
     }
 
-    // Destroying all Bricks AND THEN clearing bricks-array
     private void ClearAllBricks()
     {
+        // Destroying all Bricks AND THEN clearing bricks-array
+        
         for (int x = 0; x < brickMatrix.x; x++)
         {
             for (int y = 0; y < brickMatrix.y; y++)
@@ -127,6 +128,8 @@ public class BrickManager : MonoBehaviour
     
     private bool AreAnyBricksActive()
     {
+        // Goes through "brickArray" and returns false when each brick is inactive.
+        
         for (int x = 0; x < columns; x++)
         {
             for (int y = 0; y < rows; y++)
