@@ -54,8 +54,21 @@ public class BrickManager : MonoBehaviour
         // Delete all inactive Bricks
         ClearAllBricks();
         
+        // TODO: Deactivate Player Movement
+        
+        // TODO: Destroy Ball
+        
+        // TODO: Show Upgrade UI
+        
+        // When Player presses O.K.
+            // TODO: Hide Upgrade UI
+        
+            // TODO: Activate Player Movement
+        
         // Generate new Bricks
         SpawnNewBricks();
+        
+        // TODO: Spawn new Ball
     }
 
     private void ClearAllBricks()
