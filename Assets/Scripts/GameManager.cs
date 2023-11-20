@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(targetSceneIndex);
         */
-        canvasManager.NextWaveNumbre();
+        canvasManager.NextWaveNumber();
     }
 
     private void ReloadLevel()

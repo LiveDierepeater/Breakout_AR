@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PowerupSpawner : MonoBehaviour
 {
-    Brick brick;
+    private Brick brick;
 
     [Range(0, 1f)]
     public float spawnChance = 0.5f;
@@ -24,7 +24,7 @@ public class PowerupSpawner : MonoBehaviour
         if (willSpawnPowerup) SpawnPowerup();
     }
 
-    void SpawnPowerup()
+    private void SpawnPowerup()
     {
         int randomIndex = Random.Range(0, powerupPrefabs.Length);
         Instantiate(powerupPrefabs[randomIndex], transform.position, Quaternion.identity);

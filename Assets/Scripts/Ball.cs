@@ -39,7 +39,9 @@ public class Ball : MonoBehaviour
                     float bounceVelocityX = bouncePositionX * (collision.relativeVelocity.x + 1);
 
                     float currentSpeed = rigidbody2D.velocity.magnitude;
-                    Vector2 newDirection = new Vector2(rigidbody2D.velocity.x + bounceVelocityX * deflection, rigidbody2D.velocity.y);
+                    Vector2 ballVelocity = rigidbody2D.velocity;
+                    
+                    Vector2 newDirection = new Vector2(ballVelocity.x + bounceVelocityX * deflection, ballVelocity.y);
 
                     rigidbody2D.velocity = newDirection.normalized * currentSpeed;
                 }

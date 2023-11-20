@@ -7,33 +7,33 @@ public class CanvasManager : MonoBehaviour
     public TextMeshProUGUI pointsUI;
     public TextMeshProUGUI hpUI;
 
-    private string waveName = "Wave: ";
+    private const string WaveName = "Wave: ";
     private int currentWaveNumber = 1;
 
-    private string pointName = "Points: ";
+    private const string PointName = "Points: ";
 
-    private string hpName = " HP";
+    private const string HpName = " HP";
 
     private void Start()
     {
-        currentWaveUI.text = waveName + currentWaveNumber;
-        pointsUI.text = pointName + "0";
-        hpUI.text = "3" + hpName;
+        currentWaveUI.text = WaveName + currentWaveNumber;
+        pointsUI.text = PointName + "0";
+        hpUI.text = "3" + HpName;
     }
 
     public void OverridePoints(int points)
     {
-        pointsUI.text = pointName + points;
+        pointsUI.text = PointName + points;
     }
 
-    public void NextWaveNumbre()
+    public void NextWaveNumber()
     {
-        currentWaveUI.text = waveName + (currentWaveNumber += 1);
+        currentWaveUI.text = WaveName + (currentWaveNumber += 1);
     }
 
     public void OverrideHitPoints(int hP)
     {
-        hpUI.text = hP + hpName;
+        hpUI.text = hP + HpName;
     }
 
     public int GetCurrentWaveNumber()

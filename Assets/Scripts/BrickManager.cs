@@ -8,7 +8,7 @@ public class BrickManager : MonoBehaviour
     public Vector2Int brickMatrix = new Vector2Int(9, 13);
     public Vector2 padding;
 
-    Brick[,] brickArray;
+    private Brick[,] brickArray;
     private GameManager gameManager;
 
     private int currentWaveNumber;
@@ -36,7 +36,7 @@ public class BrickManager : MonoBehaviour
 
     private void GenerateNextWave()
     {
-        // Delete all unactive Bricks
+        // Delete all inactive Bricks
         ClearAllBricks();
         
         // Generate new Bricks
@@ -62,10 +62,10 @@ public class BrickManager : MonoBehaviour
         // Look in which wave we are. Compare to previous amount of bricks in wave.
             // Create "BRICK MATRIX" to format bricks. Create an "INDEX OF OMIT" (out of "waveNumber") which will let out rows or columns.
 
-        int column, rows;
-        column = brickMatrix.x;
+        int rows, columns;
         rows = brickMatrix.y;
-        brickArray = new Brick[column, rows];
+        columns = brickMatrix.x;
+        brickArray = new Brick[rows, columns];
         
         currentWaveNumber = GetCurrentWaveNumber();
         int omitIndex = 13 - currentWaveNumber;
@@ -74,9 +74,9 @@ public class BrickManager : MonoBehaviour
         
         // Create formation in consideration of "INDEX OF OMIT".
         
-        for (int x = 0; x < column; x++)
+        for (int x = 0; x < rows; x++)
         {
-            for (int y = 0; y < rows; y++)
+            for (int y = 0; y < columns; y++)
             {
                 Brick newBrick = Instantiate(brickPrefab);
 
@@ -100,9 +100,9 @@ public class BrickManager : MonoBehaviour
 
         int rowsToSpawn = brickMatrix.y - omitIndex;
 
-        for (int x = rowsToSpawn; x < column; x++)
+        for (int x = rowsToSpawn; x < rows; x++)
         {
-            for (int y = 0; y < rows; y++)
+            for (int y = 0; y < columns; y++)
             {
                 Brick brick = brickArray[x, y];
                 brick.gameObject.SetActive(false);
