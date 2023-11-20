@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private float input;
     private float normalSpeed;
 
-    public int startHitPoints = 3;
+    public int startHitPoints = 10;
     private int currentHitPoints;
 
     private void Awake()
