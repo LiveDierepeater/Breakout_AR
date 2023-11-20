@@ -9,8 +9,6 @@ public class CanvasManager : MonoBehaviour
     private const string waveName = "Wave: ";
     private int currentWaveNumber = 1;
 
-    private const string pointName = "Points: ";
-
     private const string hpName = " HP";
 
     private void Start()

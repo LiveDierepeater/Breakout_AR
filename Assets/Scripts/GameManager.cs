@@ -27,18 +27,6 @@ public class GameManager : MonoBehaviour
     // TODO: move this somewhere else?
     public void LoadNextScene()
     {
-        /*
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int targetSceneIndex = currentSceneIndex + 1;
-
-        // [insert reason why we wrap back to scene 0]
-        if (targetSceneIndex >= SceneManager.sceneCountInBuildSettings)
-        {
-            targetSceneIndex = 0;
-        }
-
-        SceneManager.LoadScene(targetSceneIndex);
-        */
         canvasManager.NextWaveNumber();
     }
 
