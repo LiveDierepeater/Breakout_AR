@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
 
     private new Rigidbody2D rigidbody2D;
     private Player player;
+    private GameManager gameManager;
 
     public Vector2 initialVelocity = Vector2.up * 5;
     public float deflection = 1f;
@@ -16,11 +17,13 @@ public class Ball : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Start()
     {
         rigidbody2D.velocity = initialVelocity;
+        gameManager.SubscribeBall(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

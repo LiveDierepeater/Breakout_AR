@@ -175,7 +175,7 @@ MonoBehaviour:
   standardBall: {fileID: 8448487774854993572, guid: 357220115afdac240b3575cf5b73e04a, type: 3}
   speed: 20
   anchored: 0
-  startHitPoints: 3
+  startHitPoints: 10
 --- !u!1 &2706495344376919708
 GameObject:
   m_ObjectHideFlags: 0

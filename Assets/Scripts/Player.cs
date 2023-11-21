@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         rigidbody2D.velocity = new Vector2(input * speed, 0);
     }
 
-    private void SpawnNewBall()
+    public void SpawnNewBall()
     {
         Ball newBall = Instantiate(standardBall, Vector3.up * 3, transform.rotation);
         newBall.OnBallOut += Ball_OnBallOut;
@@ -85,11 +85,11 @@ public class Player : MonoBehaviour
         gameManager.OverrideHitPoints(currentHitPoints);
     }
     
-    public void ApplyPowerup(Powerup powerup)
+    public void ApplyPowerUp(Powerup powerUp)
     {
-        print("received powerup");
+        print("received PowerUp");
 
-        switch (powerup.type)
+        switch (powerUp.type)
         {
             case Powerup.PowerupType.None:
                 break;

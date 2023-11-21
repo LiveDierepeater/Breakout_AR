@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private CanvasManager canvasManager;
     private Player player;
+    private Ball ball;
 
     private int points;
     
@@ -55,5 +56,20 @@ public class GameManager : MonoBehaviour
     public int GetCurrentWaveNumber()
     {
         return canvasManager.GetCurrentWaveNumber();
+    }
+    
+    public void SubscribeBall(Ball subscribedBall)
+    {
+        ball = subscribedBall;
+    }
+
+    public void DestroyCurrentBall()
+    {
+        Destroy(ball);
+    }
+
+    public void SpawnNewBall()
+    {
+        player.SpawnNewBall();
     }
 }
