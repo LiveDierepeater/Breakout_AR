@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
     private GameManager gameManager;
+    private Button button;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.OnUpgradePhaseActive += SWITCH_UpgradeUI;
         gameObject.SetActive(false);
+
+        button = GetComponent<Button>();
+        button.onClick.AddListener(SetIsInUpgradePhase);
     }
 
     private void SWITCH_UpgradeUI(bool isActive)
@@ -24,5 +29,10 @@ public class UpgradeUI : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
         }
+    }
+
+    private void SetIsInUpgradePhase()
+    {
+        gameManager.IsInUpgradePhase = false;
     }
 }
