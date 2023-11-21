@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private CanvasManager canvasManager;
     private Player player;
-    private Ball ball;
+    private List<Ball> balls;
 
     private int points;
     
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
+        balls = new List<Ball>();
     }
 
     private void Update()
@@ -60,12 +62,18 @@ public class GameManager : MonoBehaviour
     
     public void SubscribeBall(Ball subscribedBall)
     {
-        ball = subscribedBall;
+        balls.Add(subscribedBall);
     }
 
-    public void DestroyCurrentBall()
+    public void UnsubscribeBall(Ball unsubscribeBall)
     {
-        Destroy(ball);
+        balls.Remove(unsubscribeBall);
+    }
+
+    public void DestroyAllCurrentBalls()
+    {
+        foreach (Ball ball in balls) Destroy(ball.gameObject);
+        balls.Clear();
     }
 
     public void SpawnNewBall()

@@ -56,7 +56,7 @@ public class BrickManager : MonoBehaviour
         // Deactivate Player Movement is done in GameManager.IsInUpgradePhase.Set
         
         // Destroy Ball
-        gameManager.DestroyCurrentBall();
+        gameManager.DestroyAllCurrentBalls();
         
         // Show Upgrade UI
         gameManager.IsInUpgradePhase = true;

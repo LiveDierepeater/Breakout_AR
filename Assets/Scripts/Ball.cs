@@ -18,18 +18,20 @@ public class Ball : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.SubscribeBall(this);
     }
 
     private void Start()
     {
         rigidbody2D.velocity = initialVelocity;
-        gameManager.SubscribeBall(this);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
             if (collision.gameObject.CompareTag("Player"))
             {
+                if (player == null) player = collision.gameObject.GetComponentInChildren<Player>();
+                
                 CheckIfPlayerAnchored();
                 
                 if (!player.anchored)
@@ -54,6 +56,7 @@ public class Ball : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         OnBallOut?.Invoke();
+        gameManager.UnsubscribeBall(this);
         Destroy(gameObject);
     }
 

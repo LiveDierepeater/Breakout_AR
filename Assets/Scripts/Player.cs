@@ -26,8 +26,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        Ball newBall = Instantiate(standardBall, Vector3.up, transform.rotation);
-        newBall.OnBallOut += Ball_OnBallOut;
+        SpawnNewBall();
     }
 
     private void Update()
