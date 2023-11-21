@@ -57,15 +57,16 @@ public class BrickManager : MonoBehaviour
         
         // TODO: Destroy Ball
         
+        
         // Show Upgrade UI
         gameManager.IsInUpgradePhase = true;
         
         // When Player presses O.K.
-            // TODO: Hide Upgrade UI
-                // Is Done in UpgradeUI_btn.Component<Button>() There it sets the bool "IsInUpgradePhase" to false.
+            // Hide Upgrade UI
+                // Is Done in "UpgradeUI.SetIsInUpgradePhase()"     |   It sets the bool "IsInUpgradePhase" to false, when it gets called by "button.onClick()".
         
-            // TODO: Activate Player Movement
-        
+            // Activate Player Movement
+                // Is Done in "GameManager.IsInUpgradePhase().Set"  |   It sets Player gameObject Active/Inactive when: "player.gameObject.SetActive(!value)".
             
         // Generate new Bricks
         SpawnNewBricks();
