@@ -45,6 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickPrefab: {fileID: 2974664815872076862, guid: 87c3893f5400385479d5a11d7a59fbba, type: 3}
-  amount: {x: 9, y: 15}
-  brickMatrix: {x: 9, y: 15}
+  brickMatrix: {x: 3, y: 15}
   padding: {x: 0.5, y: 0.25}

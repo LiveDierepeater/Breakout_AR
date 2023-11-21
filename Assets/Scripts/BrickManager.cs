@@ -43,34 +43,33 @@ public class BrickManager : MonoBehaviour
         
         if (AreAnyBricksActive() == false)
         {
-            GenerateNextWave();
+            EndCurrentWave();
             gameManager.LoadNextScene();
         }
     }
 
-    private void GenerateNextWave()
+    private void EndCurrentWave()
     {
-        // Delete all inactive Bricks
         ClearAllBricks();
-        
-        // Deactivate Player Movement is done in GameManager.IsInUpgradePhase.Set
-        
-        // Destroy Ball
         gameManager.DestroyAllCurrentBalls();
         
         // Show Upgrade UI
         gameManager.IsInUpgradePhase = true;
         
+        // Deactivate Player Movement in "GameManager.IsInUpgradePhase.Set"
         // When Player presses O.K.
             // Hide Upgrade UI
                 // Is Done in "UpgradeUI.SetIsInUpgradePhase()"     |   It sets the bool "IsInUpgradePhase" to false, when it gets called by "button.onClick()".
         
             // Activate Player Movement
                 // Is Done in "GameManager.IsInUpgradePhase().Set"  |   It sets Player gameObject Active/Inactive when: "player.gameObject.SetActive(!value)".
-            
+    }
+
+    public void GenerateNextWave()
+    {
         // Generate new Bricks
         SpawnNewBricks();
-        
+
         // Spawn new Ball
         gameManager.SpawnNewBall();
     }
