@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     private GameManager gameManager;
     private new Rigidbody2D rigidbody2D;
 
-    public Ball standartBall;
+    public Ball standardBall;
 
     public float speed = 15f;
     public bool anchored;
@@ -26,24 +26,30 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        Ball newBall = Instantiate(standartBall, Vector3.up, transform.rotation);
+        Ball newBall = Instantiate(standardBall, Vector3.up, transform.rotation);
         newBall.OnBallOut += Ball_OnBallOut;
     }
 
     private void Update()
     {
-        input = Input.GetAxis("Horizontal");
+        void ReadInput()
+        {
+            input = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            anchored = true;
-            speed = 0;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                anchored = true;
+                speed = 0f;
+            }
+
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                anchored = false;
+                speed = normalSpeed;
+            }
         }
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            anchored = false;
-            speed = normalSpeed;
-        }
+
+        ReadInput();
     }
 
     private void FixedUpdate()
@@ -53,7 +59,7 @@ public class Player : MonoBehaviour
 
     private void SpawnNewBall()
     {
-        Ball newBall = Instantiate(standartBall, Vector3.up * 3, transform.rotation);
+        Ball newBall = Instantiate(standardBall, Vector3.up * 3, transform.rotation);
         newBall.OnBallOut += Ball_OnBallOut;
         newBall.gameObject.name = "Ball_" + newBall.GetInstanceID().ToString();
     }

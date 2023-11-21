@@ -7,11 +7,11 @@ public class UpgradeUI : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.OnUpdradePhaseActive += ActivateUpgradeUI;
+        gameManager.OnUpgradePhaseActive += SWITCH_UpgradeUI;
         gameObject.SetActive(false);
     }
 
-    private void ActivateUpgradeUI(bool isActive)
+    private void SWITCH_UpgradeUI(bool isActive)
     {
         switch (isActive)
         {
