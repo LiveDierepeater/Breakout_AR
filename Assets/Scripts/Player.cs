@@ -112,7 +112,13 @@ public class Player : MonoBehaviour
 
     private void SetAllPlayerStatsDefault()
     {
-        currentPlayerSpeed = playerData.DefaultSpeed;
         currentHitPoints = playerData.DefaultMaxHitPoints;
+        currentDamage = playerData.DefaultDamage;
+        currentCriticalHitDamage = playerData.DefaultCriticalHitDamage;
+        currentPlayerScale = playerData.DefaultPlayerScale;
+        currentPlayerSpeed = playerData.DefaultSpeed;
+        currentCriticalHitChance = playerData.DefaultCriticalHitChance;
+        currentLuck = playerData.DefaultLuck;
+        currentLoot = playerData.DefaultLoot;
     }
 }
