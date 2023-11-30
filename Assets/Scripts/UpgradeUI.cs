@@ -3,16 +3,19 @@ using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
+    private Player player;
     private GameManager gameManager;
+    
     private Button exitButton;
 
     private void Awake()
     {
+        player = GameObject.Find("Player").GetComponentInChildren<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.OnUpgradePhaseActive += SWITCH_UpgradeUI;
         gameObject.SetActive(false);
 
-        AddOnClickListenerToExitButton();
+        AddListenerToExitButton();
     }
     
     private void SWITCH_UpgradeUI(bool isActive)
@@ -35,7 +38,7 @@ public class UpgradeUI : MonoBehaviour
         gameManager.IsInUpgradePhase = false;
     }
     
-    private void AddOnClickListenerToExitButton()
+    private void AddListenerToExitButton()
     {
         Transform okButton = transform.Find("OK_btn");
         exitButton = okButton.GetComponentInChildren<Button>();
