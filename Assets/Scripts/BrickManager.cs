@@ -70,6 +70,9 @@ public class BrickManager : MonoBehaviour
         // Generate new Bricks
         SpawnNewBricks();
 
+        // Reset Player Position
+        gameManager.ResetPlayerPosition(Vector3.zero);
+        
         // Spawn new Ball
         gameManager.SpawnNewBall();
     }

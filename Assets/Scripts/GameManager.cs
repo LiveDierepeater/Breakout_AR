@@ -89,4 +89,9 @@ public class GameManager : MonoBehaviour
     {
         player.SpawnNewBall();
     }
+
+    public void ResetPlayerPosition(Vector3 newPlayerPosition)
+    {
+        player.transform.position = newPlayerPosition;
+    }
 }
