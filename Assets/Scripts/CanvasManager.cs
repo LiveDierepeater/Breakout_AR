@@ -5,23 +5,17 @@ public class CanvasManager : MonoBehaviour
 {
     public TextMeshProUGUI currentWaveUI;
     public TextMeshProUGUI hpUI;
-
-    private Player player;
+    public PlayerData.PlayerData playerData;
 
     private const string waveName = "Wave: ";
     private int currentWaveNumber = 1;
 
     private const string hpName = " HP";
 
-    private void Awake()
-    {
-        player = GameObject.Find("Player").GetComponentInChildren<Player>();
-    }
-
     private void Start()
     {
         currentWaveUI.text = waveName + currentWaveNumber;
-        hpUI.text = player.startHitPoints + hpName;
+        hpUI.text = playerData.DefaultMaxHitPoints + hpName;
     }
 
     public void NextWaveNumber()

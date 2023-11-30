@@ -389,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWaveUI: {fileID: 6829518539409348638}
   hpUI: {fileID: 7474584705437220925}
+  playerData: {fileID: 11400000, guid: ee0fad870079b694e8704625821689c6, type: 2}
 --- !u!1 &4590149528971385499
 GameObject:
   m_ObjectHideFlags: 0

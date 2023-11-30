@@ -9,23 +9,26 @@ public class Player : MonoBehaviour
     public Ball standardBall;
     
     public PlayerData.PlayerData playerData;
-    //public float speed => playerData.DefaultSpeed;
     
-    private float speed;
-    private float currentSpeed;
+    private int currentHitPoints;
+    private int currentDamage;
+    private int currentCriticalHitDamage;
+    private Vector3 currentPlayerScale;
+    private float currentPlayerSpeed;
+    private float currentCriticalHitChance;
+    private float currentLuck;
+    private float currentLoot;
     
     private float input;
     public bool anchored;
 
-    public int startHitPoints = 10;
-    private int currentHitPoints;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-        currentHitPoints = startHitPoints;
     }
+    
     private void Start()
     {
         SetAllPlayerStatsDefault();
@@ -41,13 +44,12 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 anchored = true;
-                speed = 0f;
+                rigidbody2D.velocity = Vector2.zero;
             }
 
             if (Input.GetKeyUp(KeyCode.E))
             {
                 anchored = false;
-                speed = currentSpeed;
             }
         }
 
@@ -57,7 +59,8 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         // Movement
-        rigidbody2D.velocity = new Vector2(input * speed, 0);
+        if (!anchored)
+            rigidbody2D.velocity = new Vector2(input * currentPlayerSpeed, 0);
     }
 
     public void SpawnNewBall()
@@ -109,7 +112,7 @@ public class Player : MonoBehaviour
 
     private void SetAllPlayerStatsDefault()
     {
-        speed = playerData.DefaultSpeed;
-        currentSpeed = speed;
+        currentPlayerSpeed = playerData.DefaultSpeed;
+        currentHitPoints = playerData.DefaultMaxHitPoints;
     }
 }
