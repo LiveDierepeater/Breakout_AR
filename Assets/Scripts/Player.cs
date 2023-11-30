@@ -13,11 +13,11 @@ public class Player : MonoBehaviour
     private int currentHitPoints;
     private int currentDamage;
     private int currentCriticalHitDamage;
-    private Vector3 currentPlayerScale;
     private float currentPlayerSpeed;
     private float currentCriticalHitChance;
     private float currentLuck;
     private float currentLoot;
+    private Vector3 currentPlayerScale;
     
     private float input;
     public bool anchored;
@@ -115,10 +115,10 @@ public class Player : MonoBehaviour
         currentHitPoints = playerData.DefaultMaxHitPoints;
         currentDamage = playerData.DefaultDamage;
         currentCriticalHitDamage = playerData.DefaultCriticalHitDamage;
-        currentPlayerScale = playerData.DefaultPlayerScale;
         currentPlayerSpeed = playerData.DefaultSpeed;
         currentCriticalHitChance = playerData.DefaultCriticalHitChance;
         currentLuck = playerData.DefaultLuck;
         currentLoot = playerData.DefaultLoot;
+        currentPlayerScale = playerData.DefaultPlayerScale;
     }
 }

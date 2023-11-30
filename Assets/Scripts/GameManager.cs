@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private Player player;
     private List<Ball> balls;
     private BrickManager brickManager;
-
+    
     private int points;
     
     public event Action<bool> OnUpgradePhaseActive;
