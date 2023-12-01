@@ -32,7 +32,7 @@ namespace PlayerData
             return sprites[size];
         }
 
-        public void ApplyResize(Player playerRef, Powerup powerupRef)
+        public void ApplyResize(Player playerRef, Powerup powerUpRef)
         {
             
         }
