@@ -5,6 +5,7 @@ public class UpgradeUI : MonoBehaviour
 {
     private Player player;
     private GameManager gameManager;
+    private CanvasManager canvasManager;
     
     private Button OK_Btn;
     private Button MaxHitPoints_btn;
@@ -20,6 +21,7 @@ public class UpgradeUI : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
         gameManager.OnUpgradePhaseActive += SWITCH_UpgradeUI;
         gameObject.SetActive(false);
 
@@ -76,7 +78,9 @@ public class UpgradeUI : MonoBehaviour
     private void AddMaxHitPoints()
     {
         // Add points to player.maxHitPoints
-        print("AddMaxHitPoints");
+        player.currentHitPoints++;
+        canvasManager.OverrideHitPoints(player.currentHitPoints);
+        print("+1 HitPoint | Now: " + player.currentHitPoints);
     }
     
     private void AddListener_Damage_Button()
@@ -89,7 +93,8 @@ public class UpgradeUI : MonoBehaviour
     private void AddDamage()
     {
         // Add damage to player.damage
-        print("AddDamage");
+        player.currentDamage++;
+        print("+1 Damage | Now: " + player.currentDamage);
     }
     
     private void AddListener_CriticalHitDamage_Button()
@@ -102,7 +107,8 @@ public class UpgradeUI : MonoBehaviour
     private void AddCriticalHitDamage()
     {
         // Add Damage to player.CriticalHitDamage
-        print("AddCriticalHitDamage");
+        player.currentCriticalHitDamage++;
+        print("Add currentCriticalHitDamage | Now: " + player.currentCriticalHitDamage);
     }
     
     private void AddListener_PlayerScale_Button()
@@ -115,7 +121,7 @@ public class UpgradeUI : MonoBehaviour
     private void AddPlayerScale()
     {
         // Add Scale to player.PlayerScale
-        print("AddPlayerScale");
+        print("Not Implemented Yet!");
     }
     
     private void AddListener_PlayerSpeed_Button()
@@ -128,7 +134,8 @@ public class UpgradeUI : MonoBehaviour
     private void AddPlayerSpeed()
     {
         // Add speed to player.PlayerSpeed
-        print("AddPlayerSpeed");
+        player.currentPlayerSpeed++;
+        print("Add PlayerSpeed | Now: " + player.currentPlayerSpeed);
     }
     
     private void AddListener_CriticalHitChance_Button()
@@ -141,7 +148,8 @@ public class UpgradeUI : MonoBehaviour
     private void AddCriticalHitChance()
     {
         // Add Chance to player.CriticalHitChance
-        print("AddCriticalHitChance");
+        player.currentCriticalHitChance += 0.05f;
+        print("Add CriticalHitChance | Now: " + player.currentCriticalHitChance);
     }
     
     private void AddListener_Luck_Button()
@@ -154,7 +162,8 @@ public class UpgradeUI : MonoBehaviour
     private void AddLuck()
     {
         // Add luck to player.Luck
-        print("AddLuck");
+        player.currentLuck += 0.05f;
+        print("Add Luck | Now: " + player.currentLuck);
     }
     
     private void AddListener_Loot_Button()
@@ -167,6 +176,7 @@ public class UpgradeUI : MonoBehaviour
     private void AddLoot()
     {
         // Add loot to player.Loot
-        print("AddLoot");
+        player.currentLoot += 0.05f;
+        print("Add Loot | Now: " + player.currentLoot);
     }
 }

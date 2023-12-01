@@ -10,14 +10,14 @@ public class Player : MonoBehaviour
     
     public PlayerData.PlayerData playerData;
     
-    private int currentHitPoints;
-    private int currentDamage;
-    private int currentCriticalHitDamage;
-    private float currentPlayerSpeed;
-    private float currentCriticalHitChance;
-    private float currentLuck;
-    private float currentLoot;
-    private Vector3 currentPlayerScale;
+    public int currentHitPoints;
+    public int currentDamage;
+    public int currentCriticalHitDamage;
+    public float currentPlayerSpeed;
+    public float currentCriticalHitChance;
+    public float currentLuck;
+    public float currentLoot;
+    public Vector3 currentPlayerScale;
     
     private float input;
     public bool anchored;
