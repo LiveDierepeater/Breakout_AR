@@ -1,0 +1,33 @@
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class Point : MonoBehaviour
+{
+    public float floatingSpeed = 10f;
+    public float rotationSpeed = 20f;
+    public float distanceThreshold = 0.5f;
+    public Vector3 finalDestination = new Vector3(-11, 30, 0);
+    
+    private new Rigidbody2D rigidbody2D;
+    private Player player;
+
+    private void Awake()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player").GetComponentInChildren<Player>();
+    }
+
+    private void Update()
+    {
+        Vector3 currentPosition = transform.position;
+        Vector2 floatingDirection = finalDestination - currentPosition;
+        rigidbody2D.velocity = floatingDirection * floatingSpeed;
+
+        transform.RotateAround(currentPosition, new Vector3(0, 0, 1), rotationSpeed);
+        
+        if (Vector3.Distance(finalDestination, currentPosition) < distanceThreshold)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}

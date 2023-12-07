@@ -4,6 +4,7 @@ using UnityEngine;
 public class BrickManager : MonoBehaviour
 {
     public Brick brickPrefab;
+    public GameObject pointPrefab;
 
     public Vector2Int brickMatrix = new Vector2Int(9, 13);
     public Vector2 padding;
@@ -40,6 +41,7 @@ public class BrickManager : MonoBehaviour
     private void Brick_OnBrickHit(Brick brick)
     {
         CurrentScore += 1;
+        Instantiate(pointPrefab, brick.transform.position, Quaternion.identity);
         
         if (AreAnyBricksActive() == false)
         {
