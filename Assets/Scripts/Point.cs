@@ -17,13 +17,18 @@ public class Point : MonoBehaviour
 
     private void Update()
     {
+        FlyToDestination(finalDestination);
+    }
+
+    private void FlyToDestination(Vector3 destination)
+    {
         Vector3 currentPosition = transform.position;
-        Vector2 floatingDirection = finalDestination - currentPosition;
+        Vector2 floatingDirection = destination - currentPosition;
         rigidbody2D.velocity = floatingDirection * floatingSpeed;
 
         transform.RotateAround(currentPosition, new Vector3(0, 0, 1), rotationSpeed);
-        
-        if (Vector3.Distance(finalDestination, currentPosition) < distanceThreshold)
+
+        if (Vector3.Distance(destination, currentPosition) < distanceThreshold)
         {
             Destroy(this.gameObject);
         }
