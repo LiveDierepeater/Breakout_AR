@@ -6,6 +6,7 @@ public class ScoreUI : MonoBehaviour
 {
     private TextMeshProUGUI textComponent;
     private const string scoreLabel = "Score:";
+    private int currentPoints;
     
     private BrickManager brickManager;
 
@@ -20,11 +21,13 @@ public class ScoreUI : MonoBehaviour
 
     private void OnScoreChanged(int newScore)
     {
-        SetScoreText(newScore);
+        currentPoints = newScore;
+        textComponent.text = scoreLabel + " " + currentPoints;
     }
 
-    private void SetScoreText(int score)
+    public void PayWithPoints(int costs)
     {
-        textComponent.text = scoreLabel + " " + score;
+        currentPoints -= costs;
+        textComponent.text = scoreLabel + " " + currentPoints;
     }
 }
