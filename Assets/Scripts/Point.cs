@@ -9,12 +9,10 @@ public class Point : MonoBehaviour
     public Vector3 finalDestination = new Vector3(-11, 30, 0);
     
     private new Rigidbody2D rigidbody2D;
-    private Player player;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player").GetComponentInChildren<Player>();
     }
 
     private void Update()
