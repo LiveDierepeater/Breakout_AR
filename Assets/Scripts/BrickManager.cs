@@ -99,7 +99,6 @@ public class BrickManager : MonoBehaviour
         // Look in which wave we are. Compare to previous amount of bricks in wave.
             // Create "BRICK MATRIX" to format bricks. Create an "INDEX OF OMIT" (out of "waveNumber") which will let out rows or columns.
 
-        
         rows = brickMatrix.y;
         columns = brickMatrix.x;
         brickArray = new Brick[rows, columns];
@@ -107,7 +106,6 @@ public class BrickManager : MonoBehaviour
         currentWaveNumber = GetCurrentWaveNumber();
         int omitIndex = 13 - currentWaveNumber;
         if (omitIndex < 0) omitIndex = 0;
-        
         
         // Create standard brick formation.
         
@@ -122,16 +120,14 @@ public class BrickManager : MonoBehaviour
                 Vector3 brickScale = newBrick.transform.localScale;
                 
                 newBrick.transform.position = transform.position
-                                              + (Vector3.right * y * brickScale.x)
-                                              + (Vector3.right * y * padding.x)
-                                              + (Vector3.up * x * brickScale.y)
-                                              + (Vector3.up * x * padding.y);
+                      + (Vector3.right * y * brickScale.x)
+                      + (Vector3.right * y * padding.x)
+                      + (Vector3.up * x * brickScale.y)
+                      + (Vector3.up * x * padding.y);
 
                 brickArray.SetValue(newBrick, x, y);
             }
         }
-
-        
         
         // Disable Bricks dependent from "INDEX OF OMIT".
 

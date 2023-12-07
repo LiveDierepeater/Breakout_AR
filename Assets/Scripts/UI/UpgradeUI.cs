@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,26 @@ public class UpgradeUI : MonoBehaviour
     private Button Luck_btn;
     private Button Loot_btn;
 
+    private TextMeshProUGUI MaxHitPoints_COSTS_UI;
+    private TextMeshProUGUI Damage_COSTS_UI;
+    private TextMeshProUGUI CriticalHitDamage_COSTS_UI;
+    private TextMeshProUGUI PlayerScale_COSTS_UI;
+    private TextMeshProUGUI PlayerSpeed_COSTS_UI;
+    private TextMeshProUGUI CriticalHitChance_COSTS_UI;
+    private TextMeshProUGUI Luck_COSTS_UI;
+    private TextMeshProUGUI Loot_COSTS_UI;
+
+    public int maxHitPoints_COSTS = 1;
+    public int damage_COSTS = 2;
+    public int criticalHitDamage_COSTS = 3;
+    public int playerScale_COSTS = 4;
+    public int playerSpeed_COSTS = 5;
+    public int criticalHitChance_COSTS = 6;
+    public int luck_COSTS = 7;
+    public int loot_COSTS = 8;
+
+    private const string costs_LABEL = "Costs: ";
+    
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
@@ -73,6 +94,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("MaxHitPoints_btn");
         MaxHitPoints_btn = button.GetComponentInChildren<Button>();
         MaxHitPoints_btn.onClick.AddListener(AddMaxHitPoints);
+        
+        MaxHitPoints_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        MaxHitPoints_COSTS_UI.text = costs_LABEL + maxHitPoints_COSTS;
     }
 
     private void AddMaxHitPoints()
@@ -88,6 +112,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("Damage_btn");
         Damage_btn = button.GetComponentInChildren<Button>();
         Damage_btn.onClick.AddListener(AddDamage);
+        
+        Damage_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        Damage_COSTS_UI.text = costs_LABEL + damage_COSTS;
     }
 
     private void AddDamage()
@@ -102,6 +129,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("CriticalHitDamage_btn");
         CriticalHitDamage_btn = button.GetComponentInChildren<Button>();
         CriticalHitDamage_btn.onClick.AddListener(AddCriticalHitDamage);
+        
+        CriticalHitDamage_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        CriticalHitDamage_COSTS_UI.text = costs_LABEL + criticalHitDamage_COSTS;
     }
 
     private void AddCriticalHitDamage()
@@ -116,6 +146,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("PlayerScale_btn");
         PlayerScale_btn = button.GetComponentInChildren<Button>();
         PlayerScale_btn.onClick.AddListener(AddPlayerScale);
+        
+        PlayerScale_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        PlayerScale_COSTS_UI.text = costs_LABEL + playerScale_COSTS;
     }
 
     private void AddPlayerScale()
@@ -129,6 +162,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("PlayerSpeed_btn");
         PlayerSpeed_btn = button.GetComponentInChildren<Button>();
         PlayerSpeed_btn.onClick.AddListener(AddPlayerSpeed);
+        
+        PlayerSpeed_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        PlayerSpeed_COSTS_UI.text = costs_LABEL + playerSpeed_COSTS;
     }
 
     private void AddPlayerSpeed()
@@ -143,6 +179,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("CriticalHitChance_btn");
         CriticalHitChance_btn = button.GetComponentInChildren<Button>();
         CriticalHitChance_btn.onClick.AddListener(AddCriticalHitChance);
+        
+        CriticalHitChance_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        CriticalHitChance_COSTS_UI.text = costs_LABEL + criticalHitChance_COSTS;
     }
 
     private void AddCriticalHitChance()
@@ -157,6 +196,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("Luck_btn");
         Luck_btn = button.GetComponentInChildren<Button>();
         Luck_btn.onClick.AddListener(AddLuck);
+        
+        Luck_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        Luck_COSTS_UI.text = costs_LABEL + luck_COSTS;
     }
 
     private void AddLuck()
@@ -171,6 +213,9 @@ public class UpgradeUI : MonoBehaviour
         Transform button = transform.Find("Loot_btn");
         Loot_btn = button.GetComponentInChildren<Button>();
         Loot_btn.onClick.AddListener(AddLoot);
+        
+        Loot_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        Loot_COSTS_UI.text = costs_LABEL + loot_COSTS;
     }
 
     private void AddLoot()
