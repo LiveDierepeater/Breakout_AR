@@ -30,4 +30,14 @@ public class ScoreUI : MonoBehaviour
         currentPoints -= costs;
         textComponent.text = scoreLabel + " " + currentPoints;
     }
+
+    public bool DoPlayerHaveEnoughPoints(int costs)
+    {
+        if (currentPoints - costs >= 0)
+        {
+            PayWithPoints(costs);
+            return true;
+        }
+        return false;
+    }
 }
