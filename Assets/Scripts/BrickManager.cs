@@ -41,7 +41,7 @@ public class BrickManager : MonoBehaviour
     private void Brick_OnBrickHit(Brick brick)
     {
         CurrentScore += 1;
-        Instantiate(pointPrefab, brick.transform.position, Quaternion.identity);
+        Instantiate(pointPrefab, brick.transform.position, Quaternion.identity); // Spawning Point
         
         if (AreAnyBricksActive() == false)
         {
