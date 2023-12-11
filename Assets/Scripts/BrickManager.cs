@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
-    public Brick brickPrefab;
+    public Brick defaultBrickPrefab;
+    public Brick strongBrickPrefab;
     public GameObject pointPrefab;
 
     public Vector2Int brickMatrix = new Vector2Int(9, 13);
@@ -98,12 +99,13 @@ public class BrickManager : MonoBehaviour
     {
         // Look in which wave we are. Compare to previous amount of bricks in wave.
             // Create "BRICK MATRIX" to format bricks. Create an "INDEX OF OMIT" (out of "waveNumber") which will let out rows or columns.
+            // Create "INDEX OF DIFFICULTY". This index will decide which Bricks will get spawned.
 
         rows = brickMatrix.y;
         columns = brickMatrix.x;
         brickArray = new Brick[rows, columns];
         
-        currentWaveNumber = GetCurrentWaveNumber();
+        currentWaveNumber = gameManager.GetCurrentWaveNumber();
         int omitIndex = 13 - currentWaveNumber;
         if (omitIndex < 0) omitIndex = 0;
         
@@ -113,7 +115,7 @@ public class BrickManager : MonoBehaviour
         {
             for (int y = 0; y < columns; y++)
             {
-                Brick newBrick = Instantiate(brickPrefab);
+                Brick newBrick = Instantiate(defaultBrickPrefab);
 
                 newBrick.OnBrickHit += Brick_OnBrickHit;
 
@@ -155,10 +157,5 @@ public class BrickManager : MonoBehaviour
             }
         }
         return false;
-    }
-
-    private int GetCurrentWaveNumber()
-    {
-        return gameManager.GetCurrentWaveNumber();
     }
 }
