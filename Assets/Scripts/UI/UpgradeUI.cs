@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
@@ -9,35 +10,35 @@ public class UpgradeUI : MonoBehaviour
     private CanvasManager canvasManager;
     private ScoreUI scoreUI;
     
-    private Button OK_Btn;
-    private Button MaxHitPoints_btn;
-    private Button Damage_btn;
-    private Button CriticalHitDamage_btn;
-    private Button PlayerScale_btn;
-    private Button PlayerSpeed_btn;
-    private Button CriticalHitChance_btn;
-    private Button Luck_btn;
-    private Button Loot_btn;
+    private Button okBtn;
+    private Button maxHitPointsBtn;
+    private Button damageBtn;
+    private Button criticalHitDamageBtn;
+    private Button playerScaleBtn;
+    private Button playerSpeedBtn;
+    private Button criticalHitChanceBtn;
+    private Button luckBtn;
+    private Button lootBtn;
 
-    private TextMeshProUGUI MaxHitPoints_COSTS_UI;
-    private TextMeshProUGUI Damage_COSTS_UI;
-    private TextMeshProUGUI CriticalHitDamage_COSTS_UI;
-    private TextMeshProUGUI PlayerScale_COSTS_UI;
-    private TextMeshProUGUI PlayerSpeed_COSTS_UI;
-    private TextMeshProUGUI CriticalHitChance_COSTS_UI;
-    private TextMeshProUGUI Luck_COSTS_UI;
-    private TextMeshProUGUI Loot_COSTS_UI;
+    private TextMeshProUGUI maxHitPointsCostsUI;
+    private TextMeshProUGUI damageCostsUI;
+    private TextMeshProUGUI criticalHitDamageCostsUI;
+    private TextMeshProUGUI playerScaleCostsUI;
+    private TextMeshProUGUI playerSpeedCostsUI;
+    private TextMeshProUGUI criticalHitChanceCostsUI;
+    private TextMeshProUGUI luckCostsUI;
+    private TextMeshProUGUI lootCostsUI;
 
-    public int maxHitPoints_COSTS = 1;
-    public int damage_COSTS = 2;
-    public int criticalHitDamage_COSTS = 3;
-    public int playerScale_COSTS = 4;
-    public int playerSpeed_COSTS = 5;
-    public int criticalHitChance_COSTS = 6;
-    public int luck_COSTS = 7;
-    public int loot_COSTS = 8;
+    [FormerlySerializedAs("maxHitPoints_COSTS")] public int maxHitPointsCosts = 1;
+    [FormerlySerializedAs("damage_COSTS")] public int damageCosts = 2;
+    [FormerlySerializedAs("criticalHitDamage_COSTS")] public int criticalHitDamageCosts = 3;
+    [FormerlySerializedAs("playerScale_COSTS")] public int playerScaleCosts = 4;
+    [FormerlySerializedAs("playerSpeed_COSTS")] public int playerSpeedCosts = 5;
+    [FormerlySerializedAs("criticalHitChance_COSTS")] public int criticalHitChanceCosts = 6;
+    [FormerlySerializedAs("luck_COSTS")] public int luckCosts = 7;
+    [FormerlySerializedAs("loot_COSTS")] public int lootCosts = 8;
 
-    private const string costs_LABEL = "Costs: ";
+    private const string costsLabel = "Costs: ";
     
     private void Awake()
     {
@@ -81,8 +82,8 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_OK_Button()
     {
         Transform okButton = transform.Find("OK_btn");
-        OK_Btn = okButton.GetComponentInChildren<Button>();
-        OK_Btn.onClick.AddListener(SetIsInUpgradePhase);
+        okBtn = okButton.GetComponentInChildren<Button>();
+        okBtn.onClick.AddListener(SetIsInUpgradePhase);
     }
 
     private void SetIsInUpgradePhase()
@@ -93,16 +94,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_MaxHitPoints_Button()
     {
         Transform button = transform.Find("MaxHitPoints_btn");
-        MaxHitPoints_btn = button.GetComponentInChildren<Button>();
-        MaxHitPoints_btn.onClick.AddListener(AddMaxHitPoints);
+        maxHitPointsBtn = button.GetComponentInChildren<Button>();
+        maxHitPointsBtn.onClick.AddListener(AddMaxHitPoints);
         
-        MaxHitPoints_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        MaxHitPoints_COSTS_UI.text = costs_LABEL + maxHitPoints_COSTS;
+        maxHitPointsCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        maxHitPointsCostsUI.text = costsLabel + maxHitPointsCosts;
     }
 
     private void AddMaxHitPoints()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(maxHitPoints_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(maxHitPointsCosts)) return;
         
         // Add points to player.maxHitPoints
         player.currentHitPoints++;
@@ -113,16 +114,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_Damage_Button()
     {
         Transform button = transform.Find("Damage_btn");
-        Damage_btn = button.GetComponentInChildren<Button>();
-        Damage_btn.onClick.AddListener(AddDamage);
+        damageBtn = button.GetComponentInChildren<Button>();
+        damageBtn.onClick.AddListener(AddDamage);
         
-        Damage_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        Damage_COSTS_UI.text = costs_LABEL + damage_COSTS;
+        damageCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        damageCostsUI.text = costsLabel + damageCosts;
     }
 
     private void AddDamage()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(damage_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(damageCosts)) return;
         
         // Add damage to player.damage
         player.currentDamage++;
@@ -132,16 +133,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_CriticalHitDamage_Button()
     {
         Transform button = transform.Find("CriticalHitDamage_btn");
-        CriticalHitDamage_btn = button.GetComponentInChildren<Button>();
-        CriticalHitDamage_btn.onClick.AddListener(AddCriticalHitDamage);
+        criticalHitDamageBtn = button.GetComponentInChildren<Button>();
+        criticalHitDamageBtn.onClick.AddListener(AddCriticalHitDamage);
         
-        CriticalHitDamage_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        CriticalHitDamage_COSTS_UI.text = costs_LABEL + criticalHitDamage_COSTS;
+        criticalHitDamageCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        criticalHitDamageCostsUI.text = costsLabel + criticalHitDamageCosts;
     }
 
     private void AddCriticalHitDamage()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(criticalHitDamage_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(criticalHitDamageCosts)) return;
         
         // Add Damage to player.CriticalHitDamage
         player.currentCriticalHitDamage++;
@@ -151,16 +152,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_PlayerScale_Button()
     {
         Transform button = transform.Find("PlayerScale_btn");
-        PlayerScale_btn = button.GetComponentInChildren<Button>();
-        PlayerScale_btn.onClick.AddListener(AddPlayerScale);
+        playerScaleBtn = button.GetComponentInChildren<Button>();
+        playerScaleBtn.onClick.AddListener(AddPlayerScale);
         
-        PlayerScale_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        PlayerScale_COSTS_UI.text = costs_LABEL + playerScale_COSTS;
+        playerScaleCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        playerScaleCostsUI.text = costsLabel + playerScaleCosts;
     }
 
     private void AddPlayerScale()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(playerScale_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(playerScaleCosts)) return;
         
         // Add Scale to player.PlayerScale
         print("Not Implemented Yet!");
@@ -169,16 +170,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_PlayerSpeed_Button()
     {
         Transform button = transform.Find("PlayerSpeed_btn");
-        PlayerSpeed_btn = button.GetComponentInChildren<Button>();
-        PlayerSpeed_btn.onClick.AddListener(AddPlayerSpeed);
+        playerSpeedBtn = button.GetComponentInChildren<Button>();
+        playerSpeedBtn.onClick.AddListener(AddPlayerSpeed);
         
-        PlayerSpeed_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        PlayerSpeed_COSTS_UI.text = costs_LABEL + playerSpeed_COSTS;
+        playerSpeedCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        playerSpeedCostsUI.text = costsLabel + playerSpeedCosts;
     }
 
     private void AddPlayerSpeed()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(playerSpeed_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(playerSpeedCosts)) return;
         
         // Add speed to player.PlayerSpeed
         player.currentPlayerSpeed++;
@@ -188,16 +189,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_CriticalHitChance_Button()
     {
         Transform button = transform.Find("CriticalHitChance_btn");
-        CriticalHitChance_btn = button.GetComponentInChildren<Button>();
-        CriticalHitChance_btn.onClick.AddListener(AddCriticalHitChance);
+        criticalHitChanceBtn = button.GetComponentInChildren<Button>();
+        criticalHitChanceBtn.onClick.AddListener(AddCriticalHitChance);
         
-        CriticalHitChance_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        CriticalHitChance_COSTS_UI.text = costs_LABEL + criticalHitChance_COSTS;
+        criticalHitChanceCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        criticalHitChanceCostsUI.text = costsLabel + criticalHitChanceCosts;
     }
 
     private void AddCriticalHitChance()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(criticalHitChance_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(criticalHitChanceCosts)) return;
         
         // Add Chance to player.CriticalHitChance
         player.currentCriticalHitChance += 0.05f;
@@ -207,16 +208,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_Luck_Button()
     {
         Transform button = transform.Find("Luck_btn");
-        Luck_btn = button.GetComponentInChildren<Button>();
-        Luck_btn.onClick.AddListener(AddLuck);
+        luckBtn = button.GetComponentInChildren<Button>();
+        luckBtn.onClick.AddListener(AddLuck);
         
-        Luck_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        Luck_COSTS_UI.text = costs_LABEL + luck_COSTS;
+        luckCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        luckCostsUI.text = costsLabel + luckCosts;
     }
 
     private void AddLuck()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(luck_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(luckCosts)) return;
         
         // Add luck to player.Luck
         player.currentLuck += 0.05f;
@@ -226,16 +227,16 @@ public class UpgradeUI : MonoBehaviour
     private void AddListener_Loot_Button()
     {
         Transform button = transform.Find("Loot_btn");
-        Loot_btn = button.GetComponentInChildren<Button>();
-        Loot_btn.onClick.AddListener(AddLoot);
+        lootBtn = button.GetComponentInChildren<Button>();
+        lootBtn.onClick.AddListener(AddLoot);
         
-        Loot_COSTS_UI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        Loot_COSTS_UI.text = costs_LABEL + loot_COSTS;
+        lootCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
+        lootCostsUI.text = costsLabel + lootCosts;
     }
 
     private void AddLoot()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(loot_COSTS)) return;
+        if (!scoreUI.DoPlayerHaveEnoughPoints(lootCosts)) return;
         
         // Add loot to player.Loot
         player.currentLoot += 0.05f;
