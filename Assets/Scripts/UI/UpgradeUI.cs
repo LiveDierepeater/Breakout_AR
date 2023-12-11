@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
+    public PointsUI pointsUI;
+    
     private Player player;
     private GameManager gameManager;
     private CanvasManager canvasManager;
-    private ScoreUI scoreUI;
     
     private Button okBtn;
     private Button maxHitPointsBtn;
@@ -43,9 +44,8 @@ public class UpgradeUI : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
-        scoreUI = canvasManager.transform.GetComponentInChildren<ScoreUI>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.OnUpgradePhaseActive += SWITCH_UpgradeUI;
         gameObject.SetActive(false);
 
@@ -103,7 +103,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddMaxHitPoints()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(maxHitPointsCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(maxHitPointsCosts)) return;
         
         // Add points to player.maxHitPoints
         player.currentHitPoints++;
@@ -123,7 +123,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddDamage()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(damageCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(damageCosts)) return;
         
         // Add damage to player.damage
         player.currentDamage++;
@@ -142,7 +142,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddCriticalHitDamage()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(criticalHitDamageCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(criticalHitDamageCosts)) return;
         
         // Add Damage to player.CriticalHitDamage
         player.currentCriticalHitDamage++;
@@ -161,7 +161,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddPlayerScale()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(playerScaleCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(playerScaleCosts)) return;
         
         // Add Scale to player.PlayerScale
         print("Not Implemented Yet!");
@@ -179,7 +179,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddPlayerSpeed()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(playerSpeedCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(playerSpeedCosts)) return;
         
         // Add speed to player.PlayerSpeed
         player.currentPlayerSpeed++;
@@ -198,7 +198,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddCriticalHitChance()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(criticalHitChanceCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(criticalHitChanceCosts)) return;
         
         // Add Chance to player.CriticalHitChance
         player.currentCriticalHitChance += 0.05f;
@@ -217,7 +217,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddLuck()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(luckCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(luckCosts)) return;
         
         // Add luck to player.Luck
         player.currentLuck += 0.05f;
@@ -236,7 +236,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void AddLoot()
     {
-        if (!scoreUI.DoPlayerHaveEnoughPoints(lootCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(lootCosts)) return;
         
         // Add loot to player.Loot
         player.currentLoot += 0.05f;

@@ -5,10 +5,11 @@ using UnityEngine;
 public class ScoreUI : MonoBehaviour
 {
     private TextMeshProUGUI textComponent;
-    private const string scoreLabel = "Score:";
+    private BrickManager brickManager;
+    
     private int currentPoints;
     
-    private BrickManager brickManager;
+    private const string scoreLabel = "Score:";
 
     private void Awake()
     {
@@ -23,21 +24,5 @@ public class ScoreUI : MonoBehaviour
     {
         currentPoints = newScore;
         textComponent.text = scoreLabel + " " + currentPoints;
-    }
-
-    public void PayWithPoints(int costs)
-    {
-        currentPoints -= costs;
-        textComponent.text = scoreLabel + " " + currentPoints;
-    }
-
-    public bool DoPlayerHaveEnoughPoints(int costs)
-    {
-        if (currentPoints - costs >= 0)
-        {
-            PayWithPoints(costs);
-            return true;
-        }
-        return false;
     }
 }
