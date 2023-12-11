@@ -13,6 +13,7 @@ public class BrickManager : MonoBehaviour
     private Brick[,] brickArray;
     private GameManager gameManager;
 
+    private int currentDifficulty;
     private int currentWaveNumber;
     private int rows, columns;
     
@@ -108,6 +109,11 @@ public class BrickManager : MonoBehaviour
         currentWaveNumber = gameManager.GetCurrentWaveNumber();
         int omitIndex = 13 - currentWaveNumber;
         if (omitIndex < 0) omitIndex = 0;
+
+        // Updating the currentDifficulty
+        currentDifficulty = currentWaveNumber;
+        
+        // TODO: The "currentDifficulty" will decide here how many strong bricks will get spawned.
         
         // Create standard brick formation.
         
