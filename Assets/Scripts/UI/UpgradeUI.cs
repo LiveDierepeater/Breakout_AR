@@ -101,7 +101,7 @@ public class UpgradeUI : MonoBehaviour
         maxHitPointsCostsUI.text = costsLabel + maxHitPointsCosts;
     }
 
-    private void AddMaxHitPoints()
+    private void AddMaxHitPoints() //IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(maxHitPointsCosts)) return;
         
@@ -121,7 +121,7 @@ public class UpgradeUI : MonoBehaviour
         damageCostsUI.text = costsLabel + damageCosts;
     }
 
-    private void AddDamage()
+    private void AddDamage() // TODO: IMPLEMENT
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(damageCosts)) return;
         
@@ -140,7 +140,7 @@ public class UpgradeUI : MonoBehaviour
         criticalHitDamageCostsUI.text = costsLabel + criticalHitDamageCosts;
     }
 
-    private void AddCriticalHitDamage()
+    private void AddCriticalHitDamage() // TODO: IMPLEMENT
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(criticalHitDamageCosts)) return;
         
@@ -159,7 +159,7 @@ public class UpgradeUI : MonoBehaviour
         playerScaleCostsUI.text = costsLabel + playerScaleCosts;
     }
 
-    private void AddPlayerScale()
+    private void AddPlayerScale() // TODO: IMPLEMENT
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(playerScaleCosts)) return;
         
@@ -177,7 +177,7 @@ public class UpgradeUI : MonoBehaviour
         playerSpeedCostsUI.text = costsLabel + playerSpeedCosts;
     }
 
-    private void AddPlayerSpeed()
+    private void AddPlayerSpeed() // TODO: IMPLEMENT
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(playerSpeedCosts)) return;
         
@@ -196,7 +196,7 @@ public class UpgradeUI : MonoBehaviour
         criticalHitChanceCostsUI.text = costsLabel + criticalHitChanceCosts;
     }
 
-    private void AddCriticalHitChance()
+    private void AddCriticalHitChance() // TODO: IMPLEMENT
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(criticalHitChanceCosts)) return;
         
@@ -215,7 +215,7 @@ public class UpgradeUI : MonoBehaviour
         luckCostsUI.text = costsLabel + luckCosts;
     }
 
-    private void AddLuck()
+    private void AddLuck() // TODO: IMPLEMENT
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(luckCosts)) return;
         
@@ -234,7 +234,7 @@ public class UpgradeUI : MonoBehaviour
         lootCostsUI.text = costsLabel + lootCosts;
     }
 
-    private void AddLoot()
+    private void AddLoot() // TODO: IMPLEMENT
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(lootCosts)) return;
         
