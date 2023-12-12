@@ -17,11 +17,11 @@ public class PointsUI : MonoBehaviour
         textComponent = GetComponent<TextMeshProUGUI>();
         brickManager = GameObject.Find("BrickManager").GetComponent<BrickManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.OnUpgradePhaseActive += SWITCH_PointsUI;
         
+        gameManager.OnUpgradePhaseActive += SWITCH_PointsUI;
         brickManager.OnScoreChanged += OnScoreChanged;
     }
-    
+
     private void SWITCH_PointsUI(bool isActive)
     {
         switch (isActive)
@@ -35,7 +35,7 @@ public class PointsUI : MonoBehaviour
                 break;
         }
     }
-
+    
     private void Start()
     {
         gameObject.SetActive(false);

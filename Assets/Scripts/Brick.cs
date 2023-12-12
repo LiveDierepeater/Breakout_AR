@@ -6,9 +6,10 @@ public class Brick : MonoBehaviour
     public event BrickHitDelegate OnBrickHit;
 
     private SpriteRenderer spriteRenderer;
-    
+
     public int startHP = 1;
     public Color color;
+    public int value = 1;
 
     private int currentHP;
 
