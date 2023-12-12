@@ -30,7 +30,8 @@ public class Powerup : MonoBehaviour
 
     private void Effect_ScalePlayer(Player player)
     {
-        player.transform.localScale *= 1.1f;
+        if (player.transform.localScale.x <= 2f)
+            player.transform.localScale *= 1.1f;
     }
     
 }
