@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,7 +14,7 @@ public class BrickManager : MonoBehaviour
     private Brick[,] brickArray;
     private GameManager gameManager;
 
-    private int currentDifficulty;
+    private float currentDifficulty;
     private int currentWaveNumber;
     private int rows, columns;
     
@@ -169,7 +168,7 @@ public class BrickManager : MonoBehaviour
                     Brick brick = brickArray[x, y];
                     if (brick.isActiveAndEnabled)
                     {
-                        float switchChance = (float)currentDifficulty / 15f;
+                        float switchChance = currentDifficulty / 15f;
                         float roll = Random.Range(0f, 1f);
 
                         print("switchChance: " + switchChance);
