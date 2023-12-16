@@ -48,7 +48,7 @@ public class BrickManager : MonoBehaviour
     {
         CurrentScore += brick.value;
         
-        SpawningPoints = Spawning(brick, 0.05f);
+        SpawningPoints = Spawning(brick, 0.07f);
         StartCoroutine(SpawningPoints);
 
         if (AreAnyBricksActive() == false)
