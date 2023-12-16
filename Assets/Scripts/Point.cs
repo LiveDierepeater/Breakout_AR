@@ -35,7 +35,8 @@ public class Point : MonoBehaviour
         Vector2 floatingDirection = destination - currentPosition;
         rigidbody2D.velocity = floatingDirection * floatingSpeed;
 
-        transform.RotateAround(currentPosition, new Vector3(0, 0, 1), rotationSpeed);
+        float randomRotationMultiplication = Random.Range(-10f, 10f);
+        transform.RotateAround(currentPosition, new Vector3(0, 0, 1), randomRotationMultiplication * rotationSpeed);
 
         if (Vector3.Distance(destination, currentPosition) < distanceThreshold)
         {
