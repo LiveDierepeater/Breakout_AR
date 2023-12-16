@@ -58,6 +58,7 @@ public class UpgradeUI : MonoBehaviour
         {
             case true:
                 gameObject.SetActive(true);
+                player.anchored = false;
                 break;
             
             case false:

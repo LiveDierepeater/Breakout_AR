@@ -1,8 +1,10 @@
+using System.ComponentModel;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
     private GameManager gameManager;
     private new Rigidbody2D rigidbody2D;
 
@@ -18,15 +20,25 @@ public class Player : MonoBehaviour
     public float currentLuck;
     public float currentLoot;
     public Vector3 currentPlayerScale;
-    
-    private float input;
-    public bool anchored;
 
+    private bool internalAnchored;
+    private float input;
+
+    public bool anchored
+    {
+        get => internalAnchored;
+        set
+        {
+            internalAnchored = value;
+            spriteRenderer.color = value ? Color.yellow : Color.white;
+        }
+    }
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     private void Start()
@@ -37,6 +49,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        ReadInput();
+        return;
+
         void ReadInput()
         {
             input = Input.GetAxis("Horizontal");
@@ -52,8 +67,6 @@ public class Player : MonoBehaviour
                 anchored = false;
             }
         }
-
-        ReadInput();
     }
 
     private void FixedUpdate()
