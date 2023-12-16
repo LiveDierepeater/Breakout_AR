@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,6 +21,8 @@ public class BrickManager : MonoBehaviour
     
     public Action<int> OnScoreChanged;
     private int internalCurrentScore;
+
+    private IEnumerator SpawningPoints;
     
     private int CurrentScore
     {
@@ -33,7 +36,7 @@ public class BrickManager : MonoBehaviour
     
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find(nameof(GameManager)).GetComponent<GameManager>();
     }
     
     private void Start()
@@ -43,9 +46,11 @@ public class BrickManager : MonoBehaviour
 
     private void Brick_OnBrickHit(Brick brick)
     {
-        CurrentScore += 1;
-        Instantiate(pointPrefab, brick.transform.position, Quaternion.identity); // Spawning Point
+        CurrentScore += brick.value;
         
+        SpawningPoints = Spawning(brick, 0.05f);
+        StartCoroutine(SpawningPoints);
+
         if (AreAnyBricksActive() == false)
         {
             EndCurrentWave();
@@ -53,6 +58,15 @@ public class BrickManager : MonoBehaviour
         }
     }
 
+    private IEnumerator Spawning(Brick brick, float timeToWait)
+    {
+        for (int x = 0; x < brick.value; x++)
+        {
+            Instantiate(pointPrefab, brick.transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(timeToWait);
+        }
+    }
+    
     private void EndCurrentWave()
     {
         ClearAllBricks();
@@ -168,7 +182,7 @@ public class BrickManager : MonoBehaviour
                     Brick brick = brickArray[x, y];
                     if (brick.isActiveAndEnabled)
                     {
-                        float switchChance = currentDifficulty / 15f;
+                        float switchChance = currentDifficulty / 1f;
                         float roll = Random.Range(0f, 1f);
 
                         print("switchChance: " + switchChance);

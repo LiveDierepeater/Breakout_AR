@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3677de892dfc70c4cb039558f316e9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatingSpeed: 3
+  floatingSpeed: 2
   rotationSpeed: 1
+  randomStartVelocityAmount: 1000
   distanceThreshold: 2
   finalDestination: {x: -11, y: 30, z: 0}
