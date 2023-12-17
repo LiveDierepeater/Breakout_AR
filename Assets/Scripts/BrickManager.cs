@@ -60,9 +60,11 @@ public class BrickManager : MonoBehaviour
 
     private IEnumerator Spawning(Brick brick, float timeToWait)
     {
+        Vector3 brickPosition = brick.transform.position;
+        
         for (int x = 0; x < brick.value; x++)
         {
-            Instantiate(pointPrefab, brick.transform.position, Quaternion.identity);
+            Instantiate(pointPrefab, brickPosition, Quaternion.identity);
             yield return new WaitForSeconds(timeToWait);
         }
     }
