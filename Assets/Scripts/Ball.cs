@@ -52,6 +52,7 @@ public class Ball : MonoBehaviour
 
                     rigidbody2D.velocity = newDirection.normalized * currentSpeed;
                 }
+                soundManager.PlayPlayerHitSound();
             }
 
             if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Brick"))
