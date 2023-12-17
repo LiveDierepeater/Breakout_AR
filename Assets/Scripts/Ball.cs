@@ -58,6 +58,11 @@ public class Ball : MonoBehaviour
             {
                 soundManager.PlayImpactSound_Normal();
             }
+
+            if (collision.gameObject.CompareTag("Brick"))
+            {
+                soundManager.PlayHitSound_Normal();
+            }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
