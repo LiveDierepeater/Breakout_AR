@@ -178,17 +178,14 @@ public class BrickManager : MonoBehaviour
             {
                 for (int y = 0; y < columns; y++)
                 {
-                    print(brickArray[x, y]);
-                    print("y: " + y);
-                    print("x: " + x);
                     Brick brick = brickArray[x, y];
                     if (brick.isActiveAndEnabled)
                     {
-                        float switchChance = currentDifficulty / 1f;
+                        float switchChance = currentDifficulty / 15f;
                         float roll = Random.Range(0f, 1f);
 
-                        print("switchChance: " + switchChance);
-                        print("roll: " + roll);
+                        print("switchChance: " + switchChance * 100f);
+                        print("roll: " + roll * 100f);
 
                         if (roll < switchChance) // Switches the current Brick out.
                         {
