@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     private Player player;
     private GameManager gameManager;
+    private SoundManager soundManager;
 
     public Vector2 initialVelocity = Vector2.up * 5;
     public float deflection = 1f;
@@ -19,6 +20,7 @@ public class Ball : MonoBehaviour
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SubscribeBall(this);
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     private void Start()
@@ -50,6 +52,11 @@ public class Ball : MonoBehaviour
 
                     rigidbody2D.velocity = newDirection.normalized * currentSpeed;
                 }
+            }
+
+            if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Brick"))
+            {
+                soundManager.PlayImpactSound_Normal();
             }
     }
 
