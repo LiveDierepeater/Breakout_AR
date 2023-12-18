@@ -228,7 +228,7 @@ public class UpgradeUI : MonoBehaviour
         playerSpeedCostsUI.text = costsLabel + currentPlayerSpeedCosts;
     }
 
-    private void AddPlayerSpeed() // TODO: IMPLEMENT
+    private void AddPlayerSpeed() // IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentPlayerSpeedCosts)) return;
         
@@ -280,11 +280,12 @@ public class UpgradeUI : MonoBehaviour
         luckCostsUI.text = costsLabel + currentLuckCosts;
     }
 
-    private void AddLuck() // TODO: IMPLEMENT
+    private void AddLuck() // IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentLuckCosts)) return;
         
         // Add luck to player.Luck
+        // In PowerUpSpawner.cs in Awake() the Spawner will get a ref to the player and grabs the "currentLuck" value and adds it to his "standardSpawnChance".
         player.currentLuck += 0.05f;
         print("Add Luck | Now: " + player.currentLuck);
         

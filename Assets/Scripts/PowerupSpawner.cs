@@ -3,11 +3,14 @@ using UnityEngine;
 public class PowerupSpawner : MonoBehaviour
 {
     private Brick brick;
+    private Player player;
 
     [Range(0, 1f)]
-    public float spawnChance = 0.5f;
+    public float standardSpawnChance = 0.05f;
+
+    private float spawnChance;
     
-    public Powerup[] powerupPrefabs;
+    public Powerup[] powerUpPrefabs;
 
     private void Awake()
     {
@@ -16,17 +19,20 @@ public class PowerupSpawner : MonoBehaviour
         {
             brick.OnBrickHit += Brick_OnBrickHit;
         }
+
+        player = GameObject.Find("Player").GetComponentInChildren<Player>();
+        spawnChance = standardSpawnChance + player.currentLuck;
     }
 
     private void Brick_OnBrickHit(Brick brickThatWasHit)
     {
-        bool willSpawnPowerup = Random.Range(0, 1f) <= spawnChance;
-        if (willSpawnPowerup) SpawnPowerup();
+        bool willSpawnPowerUp = Random.Range(0, 1f) <= spawnChance;
+        if (willSpawnPowerUp) SpawnPowerUp();
     }
 
-    private void SpawnPowerup()
+    private void SpawnPowerUp()
     {
-        int randomIndex = Random.Range(0, powerupPrefabs.Length);
-        Instantiate(powerupPrefabs[randomIndex], transform.position, Quaternion.identity);
+        int randomIndex = Random.Range(0, powerUpPrefabs.Length);
+        Instantiate(powerUpPrefabs[randomIndex], transform.position, Quaternion.identity);
     }
 }
