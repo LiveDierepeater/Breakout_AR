@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainTheme: {fileID: 8300000, guid: 3fa1bc58af7a412439d734d0bdaf7e6f, type: 3}
   hitSound_normal: {fileID: 8300000, guid: bf85aa5d872dae947a33607c11835485, type: 3}
+  hitSound_critical: {fileID: 8300000, guid: 01a25b51b581c7b41b82a89c6169c5ad, type: 3}
   playerHitSound_normal: {fileID: 8300000, guid: f42e6f2bc5285d140a259a0fe4b44ceb, type: 3}
   coinSound_normal: {fileID: 8300000, guid: 8b061855748280543a124b7c99048174, type: 3}
   buySound: {fileID: 8300000, guid: 32a60e77d64c8204bbdfaee5d1bb996d, type: 3}

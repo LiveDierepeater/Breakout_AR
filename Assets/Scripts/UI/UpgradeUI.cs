@@ -177,7 +177,7 @@ public class UpgradeUI : MonoBehaviour
         criticalHitDamageCostsUI.text = costsLabel + currentCriticalHitDamageCosts;
     }
 
-    private void AddCriticalHitDamage() // TODO: IMPLEMENT
+    private void AddCriticalHitDamage() // IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentCriticalHitDamageCosts)) return;
         
@@ -254,7 +254,7 @@ public class UpgradeUI : MonoBehaviour
         criticalHitChanceCostsUI.text = costsLabel + currentCriticalHitChanceCosts;
     }
 
-    private void AddCriticalHitChance() // TODO: IMPLEMENT
+    private void AddCriticalHitChance() // IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentCriticalHitChanceCosts)) return;
         

@@ -5,6 +5,7 @@ public class SoundManager : MonoBehaviour
 {
     public AudioClip mainTheme;
     public AudioClip hitSound_normal;
+    public AudioClip hitSound_critical;
     public AudioClip playerHitSound_normal;
     public AudioClip coinSound_normal;
     public AudioClip buySound;
@@ -51,8 +52,16 @@ public class SoundManager : MonoBehaviour
 
     public void PlayHitSound_Normal()
     {
+        hitSoundAudioSource.volume = 1f;
         hitSoundAudioSource.pitch = RandomPitch();
         hitSoundAudioSource.PlayOneShot(hitSound_normal);
+        CameraShake();
+    }
+
+    public void PlayHitSound_Critical()
+    {
+        hitSoundAudioSource.volume = 0.25f;
+        hitSoundAudioSource.PlayOneShot(hitSound_critical);
         CameraShake();
     }
 
