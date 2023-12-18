@@ -25,6 +25,8 @@ public class Brick : MonoBehaviour
         Player player = GameObject.Find("Player").GetComponentInChildren<Player>();
         int damage = player.currentDamage;
         
+        // TODO: Each time when the brick gets hit, the brick should roll whether he got hit critical or not and then applies the damage.
+        
         currentHP -= damage;
         if (currentHP <= 0) DeactivateBrick();
     }
