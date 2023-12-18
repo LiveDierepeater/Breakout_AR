@@ -30,6 +30,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         mainThemeAudioSource.clip = mainTheme;
+        mainThemeAudioSource.loop = true;
         mainThemeAudioSource.Play();
     }
 
