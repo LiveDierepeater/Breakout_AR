@@ -5,10 +5,10 @@ public class CameraShake : MonoBehaviour
     private Transform camTransform;
 	
     // How long the object should shake for.
-    public float shakeDuration = 0.05f;
+    public float shakeDuration = 0.1f;
 	
     // Amplitude of the shake. A larger value shakes the camera harder.
-    public float shakeAmount = 0.2f;
+    public float shakeAmount = 0.1f;
     public float decreaseFactor = 1.0f;
 
     private Vector3 originalPos;
