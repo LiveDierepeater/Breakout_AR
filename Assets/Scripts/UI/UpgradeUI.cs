@@ -10,6 +10,7 @@ public class UpgradeUI : MonoBehaviour
     private Player player;
     private GameManager gameManager;
     private CanvasManager canvasManager;
+    private SoundManager soundManager;
     
     private Button okBtn;
     private Button maxHitPointsBtn;
@@ -48,6 +49,7 @@ public class UpgradeUI : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.OnUpgradePhaseActive += SWITCH_UpgradeUI;
         gameObject.SetActive(false);
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
         AddListenerToAllUpgradeUIButtons();
     }
@@ -56,13 +58,15 @@ public class UpgradeUI : MonoBehaviour
     {
         switch (isActive)
         {
-            case true:
+            case true: // game is paused
                 gameObject.SetActive(true);
-                player.anchored = false;
+                soundManager.DampSound();
                 break;
             
-            case false:
+            case false: // game goes on
                 gameObject.SetActive(false);
+                player.anchored = false;
+                soundManager.NormalizeSound();
                 break;
         }
     }

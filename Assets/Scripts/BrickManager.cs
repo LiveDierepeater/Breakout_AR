@@ -184,9 +184,6 @@ public class BrickManager : MonoBehaviour
                         float switchChance = currentDifficulty / 15f;
                         float roll = Random.Range(0f, 1f);
 
-                        print("switchChance: " + switchChance * 100f);
-                        print("roll: " + roll * 100f);
-
                         if (roll < switchChance) // Switches the current Brick out.
                         {
                             Brick newStrongerBrick = Instantiate(strongBrickPrefab);

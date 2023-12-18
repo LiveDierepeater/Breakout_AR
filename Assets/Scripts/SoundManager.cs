@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip hitSound_normal;
     public AudioClip playerHitSound_normal;
     public AudioClip coinSound_normal;
+    public AudioClip damp_transition_01;
 
     public List<AudioClip> bounceSounds;
     
@@ -18,6 +19,8 @@ public class SoundManager : MonoBehaviour
 
     public float randomPitchAmount = 0.2f;
 
+    public Camera mainCamera;
+    
     private void Awake()
     {
         mainThemeAudioSource = gameObject.AddComponent<AudioSource>();
@@ -31,6 +34,7 @@ public class SoundManager : MonoBehaviour
     {
         mainThemeAudioSource.clip = mainTheme;
         mainThemeAudioSource.loop = true;
+        mainThemeAudioSource.volume = 0.3f;
         mainThemeAudioSource.Play();
     }
 
@@ -68,5 +72,26 @@ public class SoundManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, bounceSounds.Count - 1);
         return bounceSounds[randomIndex];
+    }
+
+    public void DampSound()
+    {
+        AudioHighPassFilter soundDamper = mainCamera.gameObject.AddComponent<AudioHighPassFilter>();
+        soundDamper.cutoffFrequency = 2000;
+        soundDamper.highpassResonanceQ = 1;
+        
+        // Transition Sound
+        playerHitSoundAudioSource.PlayOneShot(damp_transition_01);
+        
+        // Lower MainTheme Volume
+        mainThemeAudioSource.volume /= 2f;
+    }
+
+    public void NormalizeSound()
+    {
+        Destroy(mainCamera.gameObject.GetComponent<AudioHighPassFilter>());
+        
+        // Lift MainTheme Volume
+        mainThemeAudioSource.volume *= 2f;
     }
 }
