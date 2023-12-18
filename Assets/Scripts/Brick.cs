@@ -22,8 +22,11 @@ public class Brick : MonoBehaviour
 
     private void OnCollisionEnter2D()
     {
-        currentHP--;
-        if (currentHP == 0) DeactivateBrick();
+        Player player = GameObject.Find("Player").GetComponentInChildren<Player>();
+        int damage = player.currentDamage;
+        
+        currentHP -= damage;
+        if (currentHP <= 0) DeactivateBrick();
     }
 
     private void DeactivateBrick()

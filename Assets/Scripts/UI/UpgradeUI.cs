@@ -31,14 +31,23 @@ public class UpgradeUI : MonoBehaviour
     private TextMeshProUGUI luckCostsUI;
     private TextMeshProUGUI lootCostsUI;
 
-    [FormerlySerializedAs("maxHitPoints_COSTS")] public int maxHitPointsCosts = 1;
-    [FormerlySerializedAs("damage_COSTS")] public int damageCosts = 2;
+    [FormerlySerializedAs("maxHitPoints_COSTS")] public int maxHitPointsCosts = 10;
+    [FormerlySerializedAs("damage_COSTS")] public int damageCosts = 5;
     [FormerlySerializedAs("criticalHitDamage_COSTS")] public int criticalHitDamageCosts = 3;
-    [FormerlySerializedAs("playerScale_COSTS")] public int playerScaleCosts = 4;
+    [FormerlySerializedAs("playerScale_COSTS")] public int playerScaleCosts = 5;
     [FormerlySerializedAs("playerSpeed_COSTS")] public int playerSpeedCosts = 5;
-    [FormerlySerializedAs("criticalHitChance_COSTS")] public int criticalHitChanceCosts = 6;
-    [FormerlySerializedAs("luck_COSTS")] public int luckCosts = 7;
+    [FormerlySerializedAs("criticalHitChance_COSTS")] public int criticalHitChanceCosts = 8;
+    [FormerlySerializedAs("luck_COSTS")] public int luckCosts = 8;
     [FormerlySerializedAs("loot_COSTS")] public int lootCosts = 8;
+    
+    private int currentMaxHitPointsCosts ;
+    private int currentDamageCosts;
+    private int currentCriticalHitDamageCosts;
+    private int currentPlayerScaleCosts;
+    private int currentPlayerSpeedCosts;
+    private int currentCriticalHitChanceCosts;
+    private int currentLuckCosts;
+    private int currentLootCosts;
 
     private const string costsLabel = "Costs: ";
     
@@ -51,9 +60,18 @@ public class UpgradeUI : MonoBehaviour
         gameObject.SetActive(false);
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
+        currentMaxHitPointsCosts = maxHitPointsCosts;
+        currentDamageCosts = damageCosts;
+        currentCriticalHitDamageCosts = criticalHitDamageCosts;
+        currentPlayerScaleCosts = playerScaleCosts;
+        currentPlayerSpeedCosts = playerSpeedCosts;
+        currentCriticalHitChanceCosts = criticalHitChanceCosts;
+        currentLuckCosts = luckCosts;
+        currentLootCosts = lootCosts;
+        
         AddListenerToAllUpgradeUIButtons();
     }
-    
+
     private void SWITCH_UpgradeUI(bool isActive)
     {
         switch (isActive)
@@ -103,12 +121,12 @@ public class UpgradeUI : MonoBehaviour
         maxHitPointsBtn.onClick.AddListener(AddMaxHitPoints);
         
         maxHitPointsCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        maxHitPointsCostsUI.text = costsLabel + maxHitPointsCosts;
+        maxHitPointsCostsUI.text = costsLabel + currentMaxHitPointsCosts;
     }
 
     private void AddMaxHitPoints() //IMPLEMENTED
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(maxHitPointsCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentMaxHitPointsCosts)) return;
         
         // Add points to player.maxHitPoints
         player.currentHitPoints++;
@@ -117,6 +135,10 @@ public class UpgradeUI : MonoBehaviour
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentMaxHitPointsCosts += maxHitPointsCosts;
+        maxHitPointsCostsUI.text = costsLabel + currentMaxHitPointsCosts;
     }
     
     private void AddListener_Damage_Button()
@@ -126,12 +148,12 @@ public class UpgradeUI : MonoBehaviour
         damageBtn.onClick.AddListener(AddDamage);
         
         damageCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        damageCostsUI.text = costsLabel + damageCosts;
+        damageCostsUI.text = costsLabel + currentDamageCosts;
     }
 
     private void AddDamage() // TODO: IMPLEMENT
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(damageCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentDamageCosts)) return;
         
         // Add damage to player.damage
         player.currentDamage++;
@@ -139,6 +161,10 @@ public class UpgradeUI : MonoBehaviour
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentDamageCosts += damageCosts;
+        damageCostsUI.text = costsLabel + currentDamageCosts;
     }
     
     private void AddListener_CriticalHitDamage_Button()
@@ -148,12 +174,12 @@ public class UpgradeUI : MonoBehaviour
         criticalHitDamageBtn.onClick.AddListener(AddCriticalHitDamage);
         
         criticalHitDamageCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        criticalHitDamageCostsUI.text = costsLabel + criticalHitDamageCosts;
+        criticalHitDamageCostsUI.text = costsLabel + currentCriticalHitDamageCosts;
     }
 
     private void AddCriticalHitDamage() // TODO: IMPLEMENT
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(criticalHitDamageCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentCriticalHitDamageCosts)) return;
         
         // Add Damage to player.CriticalHitDamage
         player.currentCriticalHitDamage++;
@@ -161,6 +187,10 @@ public class UpgradeUI : MonoBehaviour
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentCriticalHitDamageCosts += criticalHitDamageCosts;
+        criticalHitDamageCostsUI.text = costsLabel + currentCriticalHitDamageCosts;
     }
     
     private void AddListener_PlayerScale_Button()
@@ -170,18 +200,22 @@ public class UpgradeUI : MonoBehaviour
         playerScaleBtn.onClick.AddListener(AddPlayerScale);
         
         playerScaleCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        playerScaleCostsUI.text = costsLabel + playerScaleCosts;
+        playerScaleCostsUI.text = costsLabel + currentPlayerScaleCosts;
     }
 
     private void AddPlayerScale() // TODO: IMPLEMENT
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(playerScaleCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentPlayerScaleCosts)) return;
         
         // Add Scale to player.PlayerScale
         print("Not Implemented Yet!");
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentPlayerScaleCosts += playerScaleCosts;
+        playerScaleCostsUI.text = costsLabel + currentPlayerScaleCosts;
     }
     
     private void AddListener_PlayerSpeed_Button()
@@ -191,12 +225,12 @@ public class UpgradeUI : MonoBehaviour
         playerSpeedBtn.onClick.AddListener(AddPlayerSpeed);
         
         playerSpeedCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        playerSpeedCostsUI.text = costsLabel + playerSpeedCosts;
+        playerSpeedCostsUI.text = costsLabel + currentPlayerSpeedCosts;
     }
 
     private void AddPlayerSpeed() // TODO: IMPLEMENT
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(playerSpeedCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentPlayerSpeedCosts)) return;
         
         // Add speed to player.PlayerSpeed
         player.currentPlayerSpeed++;
@@ -204,6 +238,10 @@ public class UpgradeUI : MonoBehaviour
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentPlayerSpeedCosts += playerSpeedCosts;
+        playerSpeedCostsUI.text = costsLabel + currentPlayerSpeedCosts;
     }
     
     private void AddListener_CriticalHitChance_Button()
@@ -213,12 +251,12 @@ public class UpgradeUI : MonoBehaviour
         criticalHitChanceBtn.onClick.AddListener(AddCriticalHitChance);
         
         criticalHitChanceCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        criticalHitChanceCostsUI.text = costsLabel + criticalHitChanceCosts;
+        criticalHitChanceCostsUI.text = costsLabel + currentCriticalHitChanceCosts;
     }
 
     private void AddCriticalHitChance() // TODO: IMPLEMENT
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(criticalHitChanceCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentCriticalHitChanceCosts)) return;
         
         // Add Chance to player.CriticalHitChance
         player.currentCriticalHitChance += 0.05f;
@@ -226,6 +264,10 @@ public class UpgradeUI : MonoBehaviour
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentCriticalHitChanceCosts += criticalHitChanceCosts;
+        criticalHitChanceCostsUI.text = costsLabel + currentCriticalHitChanceCosts;
     }
     
     private void AddListener_Luck_Button()
@@ -235,12 +277,12 @@ public class UpgradeUI : MonoBehaviour
         luckBtn.onClick.AddListener(AddLuck);
         
         luckCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        luckCostsUI.text = costsLabel + luckCosts;
+        luckCostsUI.text = costsLabel + currentLuckCosts;
     }
 
     private void AddLuck() // TODO: IMPLEMENT
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(luckCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentLuckCosts)) return;
         
         // Add luck to player.Luck
         player.currentLuck += 0.05f;
@@ -248,6 +290,10 @@ public class UpgradeUI : MonoBehaviour
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentLuckCosts += luckCosts;
+        luckCostsUI.text = costsLabel + currentLuckCosts;
     }
     
     private void AddListener_Loot_Button()
@@ -257,12 +303,12 @@ public class UpgradeUI : MonoBehaviour
         lootBtn.onClick.AddListener(AddLoot);
         
         lootCostsUI = button.Find("Costs").GetComponentInChildren<TextMeshProUGUI>();
-        lootCostsUI.text = costsLabel + lootCosts;
+        lootCostsUI.text = costsLabel + currentLootCosts;
     }
 
     private void AddLoot() // TODO: IMPLEMENT
     {
-        if (!pointsUI.DoPlayerHaveEnoughPoints(lootCosts)) return;
+        if (!pointsUI.DoPlayerHaveEnoughPoints(currentLootCosts)) return;
         
         // Add loot to player.Loot
         player.currentLoot += 0.05f;
@@ -270,5 +316,9 @@ public class UpgradeUI : MonoBehaviour
         
         // Sound
         soundManager.PlayBuySound();
+        
+        // Higher Costs
+        currentLootCosts += lootCosts;
+        lootCostsUI.text = costsLabel + currentLootCosts;
     }
 }

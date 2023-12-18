@@ -590,13 +590,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsUI: {fileID: 7802363810220891156}
-  maxHitPointsCosts: 1
-  damageCosts: 2
+  maxHitPointsCosts: 10
+  damageCosts: 5
   criticalHitDamageCosts: 3
-  playerScaleCosts: 4
+  playerScaleCosts: 5
   playerSpeedCosts: 5
-  criticalHitChanceCosts: 6
-  luckCosts: 7
+  criticalHitChanceCosts: 8
+  luckCosts: 8
   lootCosts: 8
 --- !u!1 &1328161452304667494
 GameObject:
