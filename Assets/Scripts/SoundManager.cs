@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource hitSoundAudioSource;
     private AudioSource playerHitSoundAudioSource;
 
-    public float randomPitchAmount = 0.25f;
+    public float randomPitchAmount = 0.2f;
 
     private void Awake()
     {
