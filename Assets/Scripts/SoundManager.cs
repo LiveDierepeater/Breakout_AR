@@ -98,6 +98,7 @@ public class SoundManager : MonoBehaviour
         soundDamper.highpassResonanceQ = 1;
 
         // Transition Sound
+        buySoundAudioSource.volume = 1f;
         buySoundAudioSource.PlayOneShot(damp_transition_01);
 
         // Lower MainTheme Volume
@@ -109,7 +110,7 @@ public class SoundManager : MonoBehaviour
         Destroy(mainCamera.gameObject.GetComponent<AudioHighPassFilter>());
 
         // Transition Sound
-        buySoundAudioSource.volume = 0.5f;
+        buySoundAudioSource.volume = 0.65f;
         buySoundAudioSource.PlayOneShot(damp_transition_02);
 
         // Lift MainTheme Volume
