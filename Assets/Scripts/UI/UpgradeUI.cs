@@ -114,6 +114,9 @@ public class UpgradeUI : MonoBehaviour
         player.currentHitPoints++;
         canvasManager.OverrideHitPoints(player.currentHitPoints);
         print("+1 HitPoint | Now: " + player.currentHitPoints);
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
     
     private void AddListener_Damage_Button()
@@ -133,6 +136,9 @@ public class UpgradeUI : MonoBehaviour
         // Add damage to player.damage
         player.currentDamage++;
         print("+1 Damage | Now: " + player.currentDamage);
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
     
     private void AddListener_CriticalHitDamage_Button()
@@ -152,6 +158,9 @@ public class UpgradeUI : MonoBehaviour
         // Add Damage to player.CriticalHitDamage
         player.currentCriticalHitDamage++;
         print("Add currentCriticalHitDamage | Now: " + player.currentCriticalHitDamage);
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
     
     private void AddListener_PlayerScale_Button()
@@ -170,6 +179,9 @@ public class UpgradeUI : MonoBehaviour
         
         // Add Scale to player.PlayerScale
         print("Not Implemented Yet!");
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
     
     private void AddListener_PlayerSpeed_Button()
@@ -189,6 +201,9 @@ public class UpgradeUI : MonoBehaviour
         // Add speed to player.PlayerSpeed
         player.currentPlayerSpeed++;
         print("Add PlayerSpeed | Now: " + player.currentPlayerSpeed);
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
     
     private void AddListener_CriticalHitChance_Button()
@@ -208,6 +223,9 @@ public class UpgradeUI : MonoBehaviour
         // Add Chance to player.CriticalHitChance
         player.currentCriticalHitChance += 0.05f;
         print("Add CriticalHitChance | Now: " + player.currentCriticalHitChance);
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
     
     private void AddListener_Luck_Button()
@@ -227,6 +245,9 @@ public class UpgradeUI : MonoBehaviour
         // Add luck to player.Luck
         player.currentLuck += 0.05f;
         print("Add Luck | Now: " + player.currentLuck);
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
     
     private void AddListener_Loot_Button()
@@ -246,5 +267,8 @@ public class UpgradeUI : MonoBehaviour
         // Add loot to player.Loot
         player.currentLoot += 0.05f;
         print("Add Loot | Now: " + player.currentLoot);
+        
+        // Sound
+        soundManager.PlayBuySound();
     }
 }

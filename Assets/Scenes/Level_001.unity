@@ -171,7 +171,9 @@ MonoBehaviour:
   hitSound_normal: {fileID: 8300000, guid: bf85aa5d872dae947a33607c11835485, type: 3}
   playerHitSound_normal: {fileID: 8300000, guid: f42e6f2bc5285d140a259a0fe4b44ceb, type: 3}
   coinSound_normal: {fileID: 8300000, guid: 8b061855748280543a124b7c99048174, type: 3}
+  buySound: {fileID: 8300000, guid: 32a60e77d64c8204bbdfaee5d1bb996d, type: 3}
   damp_transition_01: {fileID: 8300000, guid: 290976c230149374d91b1c8a3f808dad, type: 3}
+  damp_transition_02: {fileID: 8300000, guid: 6ae69dce4119c724189dc0d7e41e7821, type: 3}
   bounceSounds:
   - {fileID: 8300000, guid: f56523dcf4defab419650726ccc491f0, type: 3}
   - {fileID: 8300000, guid: c7e33775ae9a20b43809bd63582d0e0e, type: 3}

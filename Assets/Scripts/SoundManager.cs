@@ -7,20 +7,23 @@ public class SoundManager : MonoBehaviour
     public AudioClip hitSound_normal;
     public AudioClip playerHitSound_normal;
     public AudioClip coinSound_normal;
+    public AudioClip buySound;
     public AudioClip damp_transition_01;
+    public AudioClip damp_transition_02;
 
     public List<AudioClip> bounceSounds;
-    
+
     private AudioSource mainThemeAudioSource;
     private AudioSource bounceSoundAudioSource;
     private AudioSource hitSoundAudioSource;
     private AudioSource playerHitSoundAudioSource;
     private AudioSource coinSoundAudioSource;
+    private AudioSource buySoundAudioSource;
 
     public float randomPitchAmount = 0.2f;
 
     public Camera mainCamera;
-    
+
     private void Awake()
     {
         mainThemeAudioSource = gameObject.AddComponent<AudioSource>();
@@ -28,6 +31,7 @@ public class SoundManager : MonoBehaviour
         hitSoundAudioSource = gameObject.AddComponent<AudioSource>();
         playerHitSoundAudioSource = gameObject.AddComponent<AudioSource>();
         coinSoundAudioSource = gameObject.AddComponent<AudioSource>();
+        buySoundAudioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Start()
@@ -41,15 +45,17 @@ public class SoundManager : MonoBehaviour
     public void PlayBounceSound_Normal()
     {
         bounceSoundAudioSource.pitch = RandomPitch();
+        buySoundAudioSource.volume = 1f;
         bounceSoundAudioSource.PlayOneShot(RandomBounceClip());
     }
-    
+
     public void PlayHitSound_Normal()
     {
         hitSoundAudioSource.pitch = RandomPitch();
         hitSoundAudioSource.PlayOneShot(hitSound_normal);
+        CameraShake();
     }
-    
+
     public void PlayPlayerHitSound()
     {
         playerHitSoundAudioSource.pitch = RandomPitch();
@@ -60,6 +66,12 @@ public class SoundManager : MonoBehaviour
     {
         coinSoundAudioSource.pitch = RandomPitch();
         coinSoundAudioSource.PlayOneShot(coinSound_normal);
+    }
+
+    public void PlayBuySound()
+    {
+        buySoundAudioSource.volume = 0.35f;
+        buySoundAudioSource.PlayOneShot(buySound);
     }
 
     private float RandomPitch()
@@ -74,15 +86,20 @@ public class SoundManager : MonoBehaviour
         return bounceSounds[randomIndex];
     }
 
+    private void CameraShake()
+    {
+        mainCamera.gameObject.AddComponent<CameraShake>();
+    }
+
     public void DampSound()
     {
         AudioHighPassFilter soundDamper = mainCamera.gameObject.AddComponent<AudioHighPassFilter>();
         soundDamper.cutoffFrequency = 2000;
         soundDamper.highpassResonanceQ = 1;
-        
+
         // Transition Sound
-        playerHitSoundAudioSource.PlayOneShot(damp_transition_01);
-        
+        buySoundAudioSource.PlayOneShot(damp_transition_01);
+
         // Lower MainTheme Volume
         mainThemeAudioSource.volume /= 2f;
     }
@@ -90,7 +107,11 @@ public class SoundManager : MonoBehaviour
     public void NormalizeSound()
     {
         Destroy(mainCamera.gameObject.GetComponent<AudioHighPassFilter>());
-        
+
+        // Transition Sound
+        buySoundAudioSource.volume = 0.5f;
+        buySoundAudioSource.PlayOneShot(damp_transition_02);
+
         // Lift MainTheme Volume
         mainThemeAudioSource.volume *= 2f;
     }
