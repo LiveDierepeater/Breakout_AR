@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9df60d3c09e56946bcac11ff4225642, type: 3}
   m_Name: DefaultPlayer
   m_EditorClassIdentifier: 
-  description: wasd
+  defaultMaxHitPoints: 5
+  defaultDamage: 1
+  defaultCriticalHitDamage: 3
+  defaultSpeed: 5
+  defaultCriticalHitChance: 0.05
+  defaultLuck: 0.05
+  defaultLoot: 0
+  defaultPlayerScale: {x: 1, y: 1, z: 1}
+  sprites: []

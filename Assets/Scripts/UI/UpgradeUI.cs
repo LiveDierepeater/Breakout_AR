@@ -124,7 +124,7 @@ public class UpgradeUI : MonoBehaviour
         maxHitPointsCostsUI.text = costsLabel + currentMaxHitPointsCosts;
     }
 
-    private void AddMaxHitPoints() //IMPLEMENTED
+    private void AddMaxHitPoints() // IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentMaxHitPointsCosts)) return;
         
@@ -151,7 +151,7 @@ public class UpgradeUI : MonoBehaviour
         damageCostsUI.text = costsLabel + currentDamageCosts;
     }
 
-    private void AddDamage() // TODO: IMPLEMENT
+    private void AddDamage() // IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentDamageCosts)) return;
         
@@ -233,7 +233,7 @@ public class UpgradeUI : MonoBehaviour
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentPlayerSpeedCosts)) return;
         
         // Add speed to player.PlayerSpeed
-        player.currentPlayerSpeed++;
+        player.currentPlayerSpeed += 2f;
         print("Add PlayerSpeed | Now: " + player.currentPlayerSpeed);
         
         // Sound
@@ -306,7 +306,7 @@ public class UpgradeUI : MonoBehaviour
         lootCostsUI.text = costsLabel + currentLootCosts;
     }
 
-    private void AddLoot() // TODO: IMPLEMENT
+    private void AddLoot() // IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentLootCosts)) return;
         

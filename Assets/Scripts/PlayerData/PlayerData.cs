@@ -9,7 +9,7 @@ namespace PlayerData
         [SerializeField] private int defaultMaxHitPoints = 5;
         [SerializeField] private int defaultDamage = 1;
         [SerializeField] private int defaultCriticalHitDamage = 3;
-        [SerializeField] private float defaultSpeed = 15f;
+        [SerializeField] private float defaultSpeed = 5f;
         [SerializeField] private float defaultCriticalHitChance = 0.05f;
         [SerializeField] private float defaultLuck = 0.05f;
         [SerializeField] private int defaultLoot = 0;
