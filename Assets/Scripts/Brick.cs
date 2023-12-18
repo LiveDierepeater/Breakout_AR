@@ -12,6 +12,8 @@ public class Brick : MonoBehaviour
     public Color color;
     public int value = 1;
 
+    //public Sprite criticalHitSprite;
+    
     private int currentHP;
 
     private void OnEnable()
@@ -42,6 +44,7 @@ public class Brick : MonoBehaviour
     private void DeactivateBrick()
     {
         gameObject.SetActive(false);
+        //Instantiate(criticalHitSprite, transform.position, Quaternion.identity, null);
         OnBrickHit?.Invoke(this);
     }
 
