@@ -170,6 +170,7 @@ MonoBehaviour:
   impactSound_normal: {fileID: 8300000, guid: 1ce86aafd93c26b4a918b020898f1688, type: 3}
   hitSound_normal: {fileID: 8300000, guid: bf85aa5d872dae947a33607c11835485, type: 3}
   playerHitSound_normal: {fileID: 8300000, guid: f42e6f2bc5285d140a259a0fe4b44ceb, type: 3}
+  coinSound_normal: {fileID: 8300000, guid: 8b061855748280543a124b7c99048174, type: 3}
   randomPitchAmount: 0.2
 --- !u!1001 &1134879441744954893
 PrefabInstance:

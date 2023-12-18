@@ -10,10 +10,12 @@ public class Point : MonoBehaviour
     public Vector3 finalDestination = new Vector3(-11, 30, 0);
     
     private new Rigidbody2D rigidbody2D;
+    private SoundManager soundManager;
     
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     private void Update()
@@ -27,6 +29,7 @@ public class Point : MonoBehaviour
         float randomVelocityY = Random.Range(-1f, 1f);
         Vector2 randomStartVelocity = new Vector2(randomVelocityX, randomVelocityY) * randomStartVelocityAmount;
         rigidbody2D.AddRelativeForce(randomStartVelocity);
+        soundManager.PlayCoinSound();
     }
 
     private void FlyToDestination(Vector3 destination)

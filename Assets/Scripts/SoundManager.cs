@@ -5,10 +5,12 @@ public class SoundManager : MonoBehaviour
     public AudioClip impactSound_normal;
     public AudioClip hitSound_normal;
     public AudioClip playerHitSound_normal;
+    public AudioClip coinSound_normal;
     
     private AudioSource impactSoundAudioSource;
     private AudioSource hitSoundAudioSource;
     private AudioSource playerHitSoundAudioSource;
+    private AudioSource coinSoundAudioSource;
 
     public float randomPitchAmount = 0.2f;
 
@@ -17,6 +19,7 @@ public class SoundManager : MonoBehaviour
         impactSoundAudioSource = gameObject.AddComponent<AudioSource>();
         hitSoundAudioSource = gameObject.AddComponent<AudioSource>();
         playerHitSoundAudioSource = gameObject.AddComponent<AudioSource>();
+        coinSoundAudioSource = gameObject.AddComponent<AudioSource>();
     }
 
     public void PlayImpactSound_Normal()
@@ -35,6 +38,12 @@ public class SoundManager : MonoBehaviour
     {
         playerHitSoundAudioSource.pitch = RandomPitch();
         playerHitSoundAudioSource.PlayOneShot(playerHitSound_normal);
+    }
+
+    public void PlayCoinSound()
+    {
+        coinSoundAudioSource.pitch = RandomPitch();
+        coinSoundAudioSource.PlayOneShot(coinSound_normal);
     }
 
     private float RandomPitch()
