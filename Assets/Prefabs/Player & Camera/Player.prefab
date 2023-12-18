@@ -174,9 +174,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standardBall: {fileID: 8448487774854993572, guid: 357220115afdac240b3575cf5b73e04a, type: 3}
   playerData: {fileID: 11400000, guid: ee0fad870079b694e8704625821689c6, type: 2}
-  speed: 20
-  anchored: 0
-  startHitPoints: 10
+  currentHitPoints: 0
+  currentDamage: 0
+  currentCriticalHitDamage: 0
+  currentPlayerSpeed: 0
+  currentCriticalHitChance: 0
+  currentLuck: 0
+  currentLoot: 0
+  currentPlayerScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2706495344376919708
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,10 +308,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 8567949913923865114}
     m_Modifications:
     - target: {fileID: 8821466966201748088, guid: bf72fc96268127444bbcb463762db55c, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821466966201748088, guid: bf72fc96268127444bbcb463762db55c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -349,10 +350,6 @@ PrefabInstance:
     - target: {fileID: 8821466966201748100, guid: bf72fc96268127444bbcb463762db55c, type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821466966201748100, guid: bf72fc96268127444bbcb463762db55c, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

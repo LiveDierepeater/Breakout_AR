@@ -1,13 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioClip impactSound_normal;
+    public AudioClip mainTheme;
     public AudioClip hitSound_normal;
     public AudioClip playerHitSound_normal;
     public AudioClip coinSound_normal;
+
+    public List<AudioClip> bounceSounds;
     
-    private AudioSource impactSoundAudioSource;
+    private AudioSource mainThemeAudioSource;
+    private AudioSource bounceSoundAudioSource;
     private AudioSource hitSoundAudioSource;
     private AudioSource playerHitSoundAudioSource;
     private AudioSource coinSoundAudioSource;
@@ -16,16 +20,23 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        impactSoundAudioSource = gameObject.AddComponent<AudioSource>();
+        mainThemeAudioSource = gameObject.AddComponent<AudioSource>();
+        bounceSoundAudioSource = gameObject.AddComponent<AudioSource>();
         hitSoundAudioSource = gameObject.AddComponent<AudioSource>();
         playerHitSoundAudioSource = gameObject.AddComponent<AudioSource>();
         coinSoundAudioSource = gameObject.AddComponent<AudioSource>();
     }
 
-    public void PlayImpactSound_Normal()
+    private void Start()
     {
-        impactSoundAudioSource.pitch = RandomPitch();
-        impactSoundAudioSource.PlayOneShot(impactSound_normal);
+        mainThemeAudioSource.clip = mainTheme;
+        mainThemeAudioSource.Play();
+    }
+
+    public void PlayBounceSound_Normal()
+    {
+        bounceSoundAudioSource.pitch = RandomPitch();
+        bounceSoundAudioSource.PlayOneShot(RandomBounceClip());
     }
     
     public void PlayHitSound_Normal()
@@ -50,5 +61,11 @@ public class SoundManager : MonoBehaviour
     {
         float newPitch = 1f - ((randomPitchAmount / 2) - Random.Range(0, randomPitchAmount));
         return newPitch;
+    }
+
+    private AudioClip RandomBounceClip()
+    {
+        int randomIndex = Random.Range(0, bounceSounds.Count - 1);
+        return bounceSounds[randomIndex];
     }
 }

@@ -57,7 +57,7 @@ public class Ball : MonoBehaviour
 
             if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Brick"))
             {
-                soundManager.PlayImpactSound_Normal();
+                soundManager.PlayBounceSound_Normal();
             }
 
             if (collision.gameObject.CompareTag("Brick"))

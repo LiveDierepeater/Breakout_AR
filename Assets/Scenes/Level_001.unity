@@ -167,10 +167,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fa887545b47f54a910b5e331faf905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactSound_normal: {fileID: 8300000, guid: 1ce86aafd93c26b4a918b020898f1688, type: 3}
+  mainTheme: {fileID: 8300000, guid: 3fa1bc58af7a412439d734d0bdaf7e6f, type: 3}
   hitSound_normal: {fileID: 8300000, guid: bf85aa5d872dae947a33607c11835485, type: 3}
   playerHitSound_normal: {fileID: 8300000, guid: f42e6f2bc5285d140a259a0fe4b44ceb, type: 3}
   coinSound_normal: {fileID: 8300000, guid: 8b061855748280543a124b7c99048174, type: 3}
+  bounceSounds:
+  - {fileID: 8300000, guid: f56523dcf4defab419650726ccc491f0, type: 3}
+  - {fileID: 8300000, guid: c7e33775ae9a20b43809bd63582d0e0e, type: 3}
+  - {fileID: 8300000, guid: 7c08dd0f27cf21d40afcfe6671caa863, type: 3}
+  - {fileID: 8300000, guid: d19ec8ef29e29b643bb70d050c677d1e, type: 3}
+  - {fileID: 8300000, guid: 5bea2efe4f24e6443826beca75943206, type: 3}
   randomPitchAmount: 0.2
 --- !u!1001 &1134879441744954893
 PrefabInstance:
