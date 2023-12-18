@@ -7,16 +7,18 @@ public class PointsUI : MonoBehaviour
     private TextMeshProUGUI textComponent;
     private BrickManager brickManager;
     private GameManager gameManager;
+    private Player player;
     
     private int currentPoints;
     
-    private const string pointsLabel = "Points:";
+    private const string pointsLabel = "Points: ";
     
     private void Awake()
     {
         textComponent = GetComponent<TextMeshProUGUI>();
         brickManager = GameObject.Find("BrickManager").GetComponent<BrickManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        player = GameObject.Find("Player").GetComponentInChildren<Player>();
         
         gameManager.OnUpgradePhaseActive += SWITCH_PointsUI;
         brickManager.OnScoreChanged += OnScoreChanged;
@@ -44,13 +46,14 @@ public class PointsUI : MonoBehaviour
     private void OnScoreChanged(int newPoints)
     {
         currentPoints++;
-        textComponent.text = pointsLabel + " " + currentPoints;
+        currentPoints += player.currentLoot;
+        textComponent.text = pointsLabel + currentPoints;
     }
 
     private void PayWithPoints(int costs)
     {
         currentPoints -= costs;
-        textComponent.text = pointsLabel + " " + currentPoints;
+        textComponent.text = pointsLabel + currentPoints;
     }
 
     public bool DoPlayerHaveEnoughPoints(int costs)

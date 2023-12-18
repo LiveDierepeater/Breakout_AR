@@ -38,7 +38,7 @@ public class UpgradeUI : MonoBehaviour
     [FormerlySerializedAs("playerSpeed_COSTS")] public int playerSpeedCosts = 5;
     [FormerlySerializedAs("criticalHitChance_COSTS")] public int criticalHitChanceCosts = 8;
     [FormerlySerializedAs("luck_COSTS")] public int luckCosts = 8;
-    [FormerlySerializedAs("loot_COSTS")] public int lootCosts = 8;
+    [FormerlySerializedAs("loot_COSTS")] public int lootCosts = 50;
     
     private int currentMaxHitPointsCosts ;
     private int currentDamageCosts;
@@ -311,7 +311,7 @@ public class UpgradeUI : MonoBehaviour
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentLootCosts)) return;
         
         // Add loot to player.Loot
-        player.currentLoot += 0.05f;
+        player.currentLoot++;
         print("Add Loot | Now: " + player.currentLoot);
         
         // Sound

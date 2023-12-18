@@ -597,7 +597,7 @@ MonoBehaviour:
   playerSpeedCosts: 5
   criticalHitChanceCosts: 8
   luckCosts: 8
-  lootCosts: 8
+  lootCosts: 50
 --- !u!1 &1328161452304667494
 GameObject:
   m_ObjectHideFlags: 0

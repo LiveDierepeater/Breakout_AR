@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,7 +17,7 @@ public class Player : MonoBehaviour
     public float currentPlayerSpeed;
     public float currentCriticalHitChance;
     public float currentLuck;
-    public float currentLoot;
+    public int currentLoot;
     public Vector3 currentPlayerScale;
 
     private bool internalAnchored;

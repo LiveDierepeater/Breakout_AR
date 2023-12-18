@@ -12,7 +12,7 @@ namespace PlayerData
         [SerializeField] private float defaultSpeed = 15f;
         [SerializeField] private float defaultCriticalHitChance = 0.05f;
         [SerializeField] private float defaultLuck = 0.05f;
-        [SerializeField] private float defaultLoot = 1f;
+        [SerializeField] private int defaultLoot = 0;
         [SerializeField] private Vector3 defaultPlayerScale = Vector3.one;
         
         [ReadOnly(true)] public int DefaultMaxHitPoints => defaultMaxHitPoints;
@@ -21,7 +21,7 @@ namespace PlayerData
         [ReadOnly(true)] public float DefaultSpeed => defaultSpeed;
         [ReadOnly(true)] public float DefaultCriticalHitChance => defaultCriticalHitChance;
         [ReadOnly(true)] public float DefaultLuck => defaultLuck;
-        [ReadOnly(true)] public float DefaultLoot => defaultLoot;
+        [ReadOnly(true)] public int DefaultLoot => defaultLoot;
         [ReadOnly(true)] public Vector3 DefaultPlayerScale => defaultPlayerScale;
         
         // Unfinished Example:
