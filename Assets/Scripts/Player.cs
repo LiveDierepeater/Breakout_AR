@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public int currentLoot;
     public Vector3 currentPlayerScale;
 
+    private Ball currentBall;
+    
     private bool internalAnchored;
     private float input;
 
@@ -50,7 +52,13 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (lightingStrike.gameObject.activeSelf) return; // If Lighting Strike is currently active, return.
+            
+            Destroy(currentBall.gameObject);
+            gameManager.UnsubscribeBall(currentBall);
             lightingStrike.gameObject.SetActive(true);
+        }
         
         ReadInput();
         return;
@@ -81,9 +89,9 @@ public class Player : MonoBehaviour
 
     public void SpawnNewBall()
     {
-        Ball newBall = Instantiate(standardBall, Vector3.up * 3, transform.rotation);
-        newBall.OnBallOut += Ball_OnBallOut;
-        newBall.gameObject.name = "Ball_" + newBall.GetInstanceID().ToString();
+        currentBall = Instantiate(standardBall, Vector3.up * 3, transform.rotation);
+        currentBall.OnBallOut += Ball_OnBallOut;
+        currentBall.gameObject.name = "Ball";
     }
 
     private void Ball_OnBallOut()
