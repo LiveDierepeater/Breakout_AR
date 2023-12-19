@@ -129,8 +129,6 @@ public class Player : MonoBehaviour
     
     public void ApplyPowerUp(Powerup powerUp)
     {
-        print("Received: " + powerUp.type.ToString() + " PowerUp");
-
         switch (powerUp.type)
         {
             case Powerup.PowerupType.None:

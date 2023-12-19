@@ -8,6 +8,7 @@ public class BrickManager : MonoBehaviour
     public Brick defaultBrickPrefab;
     public Brick brick_light;
     public Brick brick_medium;
+    public Brick brick_hard;
     public GameObject pointPrefab;
 
     public Vector2Int brickMatrix = new Vector2Int(9, 13);
@@ -175,32 +176,35 @@ public class BrickManager : MonoBehaviour
             // Consider "currentDifficulty" for the amount of stronger spawned bricks till a maximum difficulty (value) is reached.
             // Goes Through every active Bricks in "brickArray" and switches them when chance is given.
 
-            //if (currentWaveNumber >= 5) return;
-
-            for (int x = 0; x < rows; x++)
+            if (currentWaveNumber >= 5)
+              HigherDifficulty();
+            else
             {
-                for (int y = 0; y < columns; y++)
+                for (int x = 0; x < rows; x++)
                 {
-                    Brick brick = brickArray[x, y];
-                    if (brick.isActiveAndEnabled)
+                    for (int y = 0; y < columns; y++)
                     {
-                        float switchChance = currentDifficulty / 5f;
-                        float roll = Random.Range(0f, 1f);
-
-                        if (roll < switchChance) // Switches the current Brick out.
+                        Brick brick = brickArray[x, y];
+                        if (brick.isActiveAndEnabled)
                         {
-                            Brick newStrongerBrick = Instantiate(brick_light);
-                            newStrongerBrick.OnBrickHit += Brick_OnBrickHit;
-                            Vector3 brickScale = newStrongerBrick.transform.localScale;
-                            
-                            newStrongerBrick.transform.position = transform.position
-                                                                  + (Vector3.right * y * brickScale.x)
-                                                                  + (Vector3.right * y * padding.x)
-                                                                  + (Vector3.up * x * brickScale.y)
-                                                                  + (Vector3.up * x * padding.y);
+                            float switchChance = currentDifficulty / 5f;
+                            float roll = Random.Range(0f, 1f);
 
-                            brickArray.SetValue(newStrongerBrick, x, y);
-                            Destroy(brick.gameObject);
+                            if (roll < switchChance) // Switches the current Brick out.
+                            {
+                                Brick newStrongerBrick = Instantiate(brick_light);
+                                newStrongerBrick.OnBrickHit += Brick_OnBrickHit;
+                                Vector3 brickScale = newStrongerBrick.transform.localScale;
+                            
+                                newStrongerBrick.transform.position = transform.position
+                                                                      + (Vector3.right * y * brickScale.x)
+                                                                      + (Vector3.right * y * padding.x)
+                                                                      + (Vector3.up * x * brickScale.y)
+                                                                      + (Vector3.up * x * padding.y);
+
+                                brickArray.SetValue(newStrongerBrick, x, y);
+                                Destroy(brick.gameObject);
+                            }
                         }
                     }
                 }
@@ -212,8 +216,7 @@ public class BrickManager : MonoBehaviour
     
     private void HigherDifficulty()
     {
-        if (stateCounter == 0) return;
-        if (stateCounter == 1)
+        if (currentWaveNumber < 10)
         {
             // Do first Iteration -> only light bricks and mixing medium bricks within.
             
@@ -224,14 +227,25 @@ public class BrickManager : MonoBehaviour
                     Brick brick = brickArray[x, y];
                     if (brick.isActiveAndEnabled)
                     {
+                        Brick lightBrick = Instantiate(brick_light);
+                        lightBrick.OnBrickHit += Brick_OnBrickHit;
+                        Vector3 lightBrickScale = lightBrick.transform.localScale;
+                            
+                        lightBrick.transform.position = transform.position
+                                                              + (Vector3.right * y * lightBrickScale.x)
+                                                              + (Vector3.right * y * padding.x)
+                                                              + (Vector3.up * x * lightBrickScale.y)
+                                                              + (Vector3.up * x * padding.y);
+
+                        brickArray.SetValue(lightBrick, x, y);
+                        Destroy(brick.gameObject);
                         
-                        
-                        float switchChance = currentDifficulty / 5f;
+                        float switchChance = currentDifficulty / 10f;
                         float roll = Random.Range(0f, 1f);
 
-                        if (roll < switchChance) // Switches the current Brick out.
+                        if (roll < switchChance) // Switches the current Brick out for a stronger Brick.
                         {
-                            Brick newStrongerBrick = Instantiate(brick_light);
+                            Brick newStrongerBrick = Instantiate(brick_medium);
                             newStrongerBrick.OnBrickHit += Brick_OnBrickHit;
                             Vector3 brickScale = newStrongerBrick.transform.localScale;
                             
@@ -242,22 +256,58 @@ public class BrickManager : MonoBehaviour
                                                                   + (Vector3.up * x * padding.y);
 
                             brickArray.SetValue(newStrongerBrick, x, y);
-                            Destroy(brick.gameObject);
+                            Destroy(lightBrick.gameObject);
                         }
                     }
                 }
             }
-            
-            stateCounter++;
         }
 
-        if (stateCounter == 2)
+        if (currentWaveNumber >= 10)
         {
             // Do second Iteration -> only medium bricks and mixing heavy bricks within.
             
-            
-            
-            stateCounter++;
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < columns; y++)
+                {
+                    Brick brick = brickArray[x, y];
+                    if (brick.isActiveAndEnabled)
+                    {
+                        Brick mediumBrick = Instantiate(brick_medium);
+                        mediumBrick.OnBrickHit += Brick_OnBrickHit;
+                        Vector3 lightBrickScale = mediumBrick.transform.localScale;
+                            
+                        mediumBrick.transform.position = transform.position
+                                                              + (Vector3.right * y * lightBrickScale.x)
+                                                              + (Vector3.right * y * padding.x)
+                                                              + (Vector3.up * x * lightBrickScale.y)
+                                                              + (Vector3.up * x * padding.y);
+
+                        brickArray.SetValue(mediumBrick, x, y);
+                        Destroy(brick.gameObject);
+                        
+                        float switchChance = currentDifficulty / 15f;
+                        float roll = Random.Range(0f, 1f);
+
+                        if (roll < switchChance) // Switches the current Brick out for a stronger Brick.
+                        {
+                            Brick newStrongerBrick = Instantiate(brick_hard);
+                            newStrongerBrick.OnBrickHit += Brick_OnBrickHit;
+                            Vector3 brickScale = newStrongerBrick.transform.localScale;
+                            
+                            newStrongerBrick.transform.position = transform.position
+                                                                  + (Vector3.right * y * brickScale.x)
+                                                                  + (Vector3.right * y * padding.x)
+                                                                  + (Vector3.up * x * brickScale.y)
+                                                                  + (Vector3.up * x * padding.y);
+
+                            brickArray.SetValue(newStrongerBrick, x, y);
+                            Destroy(mediumBrick.gameObject);
+                        }
+                    }
+                }
+            }
         }
     }
 
