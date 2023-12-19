@@ -132,11 +132,13 @@ public class Player : MonoBehaviour
                 break;
             
             case Powerup.PowerupType.Stretch:
-                transform.localScale += Vector3.right * 0.25f;
+                if (transform.localScale.x < 2f)
+                    transform.localScale += Vector3.right * 0.25f;
                 break;
             
             case Powerup.PowerupType.Shrink:
-                transform.localScale -= Vector3.right * 0.25f;
+                if (transform.localScale.x > 0.25f)
+                    transform.localScale -= Vector3.right * 0.25f;
                 break;
         }
     }
