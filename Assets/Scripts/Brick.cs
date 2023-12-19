@@ -12,7 +12,7 @@ public class Brick : MonoBehaviour
     public Color color;
     public int value = 1;
 
-    //public Sprite criticalHitSprite;
+    public CriticalHitSpawner criticalHit;
     
     private int currentHP;
 
@@ -32,6 +32,7 @@ public class Brick : MonoBehaviour
         if (IsCriticalHit(player))
         {
             damage = player.currentCriticalHitDamage;
+            Instantiate(criticalHit, transform.position, Quaternion.identity, null);
             soundManager.PlayHitSound_Critical();
         }
         else
@@ -44,7 +45,6 @@ public class Brick : MonoBehaviour
     private void DeactivateBrick()
     {
         gameObject.SetActive(false);
-        //Instantiate(criticalHitSprite, transform.position, Quaternion.identity, null);
         OnBrickHit?.Invoke(this);
     }
 

@@ -233,6 +233,7 @@ MonoBehaviour:
   startHP: 3
   color: {r: 0.9019608, g: 0.18039215, b: 0.18039215, a: 1}
   value: 3
+  criticalHit: {fileID: 6858333820179544509, guid: 561dc3b878073aa438df43d61ef9e142, type: 3}
 --- !u!114 &6693172804512397647
 MonoBehaviour:
   m_ObjectHideFlags: 0
