@@ -15,8 +15,8 @@ MonoBehaviour:
   defaultMaxHitPoints: 5
   defaultDamage: 1
   defaultCriticalHitDamage: 3
-  defaultSpeed: 5
-  defaultCriticalHitChance: 0.05
+  defaultSpeed: 8
+  defaultCriticalHitChance: 0.15
   defaultLuck: 0.05
   defaultLoot: 0
   defaultPlayerScale: {x: 1, y: 1, z: 1}

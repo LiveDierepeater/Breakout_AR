@@ -59,9 +59,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (lightingStrike.gameObject.activeSelf) return; // If Lighting Strike is currently active, return.
-            
-            Destroy(currentBall.gameObject);
-            gameManager.UnsubscribeBall(currentBall);
+
+            if (currentBall != null)
+            {
+                Destroy(currentBall.gameObject);
+                gameManager.UnsubscribeBall(currentBall);
+            }
             
             // Plays Sound of Lighting Strike
             soundManager.PlayLightingStrikeSound();

@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 public class BrickManager : MonoBehaviour
 {
     public Brick defaultBrickPrefab;
-    public Brick strongBrickPrefab;
+    public Brick brick_light;
+    public Brick brick_medium;
     public GameObject pointPrefab;
 
     public Vector2Int brickMatrix = new Vector2Int(9, 13);
@@ -174,6 +175,8 @@ public class BrickManager : MonoBehaviour
             // Consider "currentDifficulty" for the amount of stronger spawned bricks till a maximum difficulty (value) is reached.
             // Goes Through every active Bricks in "brickArray" and switches them when chance is given.
 
+            //if (currentWaveNumber >= 5) return;
+
             for (int x = 0; x < rows; x++)
             {
                 for (int y = 0; y < columns; y++)
@@ -181,12 +184,12 @@ public class BrickManager : MonoBehaviour
                     Brick brick = brickArray[x, y];
                     if (brick.isActiveAndEnabled)
                     {
-                        float switchChance = currentDifficulty / 15f;
+                        float switchChance = currentDifficulty / 5f;
                         float roll = Random.Range(0f, 1f);
 
                         if (roll < switchChance) // Switches the current Brick out.
                         {
-                            Brick newStrongerBrick = Instantiate(strongBrickPrefab);
+                            Brick newStrongerBrick = Instantiate(brick_light);
                             newStrongerBrick.OnBrickHit += Brick_OnBrickHit;
                             Vector3 brickScale = newStrongerBrick.transform.localScale;
                             
@@ -202,6 +205,59 @@ public class BrickManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private int stateCounter;
+    
+    private void HigherDifficulty()
+    {
+        if (stateCounter == 0) return;
+        if (stateCounter == 1)
+        {
+            // Do first Iteration -> only light bricks and mixing medium bricks within.
+            
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < columns; y++)
+                {
+                    Brick brick = brickArray[x, y];
+                    if (brick.isActiveAndEnabled)
+                    {
+                        
+                        
+                        float switchChance = currentDifficulty / 5f;
+                        float roll = Random.Range(0f, 1f);
+
+                        if (roll < switchChance) // Switches the current Brick out.
+                        {
+                            Brick newStrongerBrick = Instantiate(brick_light);
+                            newStrongerBrick.OnBrickHit += Brick_OnBrickHit;
+                            Vector3 brickScale = newStrongerBrick.transform.localScale;
+                            
+                            newStrongerBrick.transform.position = transform.position
+                                                                  + (Vector3.right * y * brickScale.x)
+                                                                  + (Vector3.right * y * padding.x)
+                                                                  + (Vector3.up * x * brickScale.y)
+                                                                  + (Vector3.up * x * padding.y);
+
+                            brickArray.SetValue(newStrongerBrick, x, y);
+                            Destroy(brick.gameObject);
+                        }
+                    }
+                }
+            }
+            
+            stateCounter++;
+        }
+
+        if (stateCounter == 2)
+        {
+            // Do second Iteration -> only medium bricks and mixing heavy bricks within.
+            
+            
+            
+            stateCounter++;
         }
     }
 

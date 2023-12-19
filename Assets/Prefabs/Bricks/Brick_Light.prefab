@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2974664815872076862}
   - component: {fileID: 6693172804512397647}
   m_Layer: 8
-  m_Name: StrongBrick
+  m_Name: Brick_Light
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

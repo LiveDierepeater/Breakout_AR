@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -40,17 +41,22 @@ public class Ball : MonoBehaviour
                 {
                     float ballPositionX = transform.position.x;
                     float playerPositionX = collision.gameObject.transform.position.x;
-
-                    //calculates bouncePosition from ball on X Axis & multiplies it with the current player velocity.x
-                    float bouncePositionX = ballPositionX - playerPositionX;
-                    float bounceVelocityX = bouncePositionX * (collision.relativeVelocity.x + 1);
-
-                    float currentSpeed = rigidbody2D.velocity.magnitude;
-                    Vector2 ballVelocity = rigidbody2D.velocity;
+                    float sizeNormalizeAmount = (3.2f / 2) * player.transform.localScale.x;
                     
-                    Vector2 newDirection = new Vector2(ballVelocity.x + bounceVelocityX * deflection, ballVelocity.y);
+                    float sizeNormalizedBounceAmount = (ballPositionX - playerPositionX) / sizeNormalizeAmount;
 
-                    rigidbody2D.velocity = newDirection.normalized * currentSpeed;
+                    // Calculates bouncePosition from ball on X Axis & multiplies it with the current player velocity.x
+                    //float bounceVelocityX = normalizedBouncePositionX * (MathF.Abs(collision.relativeVelocity.x) + 1);
+
+                    float currentBallSpeed = rigidbody2D.velocity.magnitude;
+                    Vector2 ballVelocity = rigidbody2D.velocity;
+                    float currentNormalizedPlayerSpeed = 
+                        player.GetComponentInChildren<Rigidbody2D>().velocity.x / player.currentPlayerSpeed;
+                    
+                    Vector2 newDirection = 
+                        new Vector2(sizeNormalizedBounceAmount * deflection + currentNormalizedPlayerSpeed, ballVelocity.y);
+
+                    rigidbody2D.velocity = newDirection.normalized * currentBallSpeed;
                 }
                 soundManager.PlayPlayerHitSound();
             }
