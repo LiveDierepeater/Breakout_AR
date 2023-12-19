@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SoundManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip buySound;
     public AudioClip damp_transition_01;
     public AudioClip damp_transition_02;
+    public AudioClip lightingStrikeClip;
 
     public List<AudioClip> bounceSounds;
 
@@ -20,6 +22,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource playerHitSoundAudioSource;
     private AudioSource coinSoundAudioSource;
     private AudioSource buySoundAudioSource;
+    private static AudioSource lightingStrikeAudioSource;
 
     public float randomPitchAmount = 0.2f;
 
@@ -33,6 +36,7 @@ public class SoundManager : MonoBehaviour
         playerHitSoundAudioSource = gameObject.AddComponent<AudioSource>();
         coinSoundAudioSource = gameObject.AddComponent<AudioSource>();
         buySoundAudioSource = gameObject.AddComponent<AudioSource>();
+        lightingStrikeAudioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Start()
@@ -81,6 +85,11 @@ public class SoundManager : MonoBehaviour
     {
         buySoundAudioSource.volume = 0.35f;
         buySoundAudioSource.PlayOneShot(buySound);
+    }
+
+    public void PlayLightingStrikeSound()
+    {
+        lightingStrikeAudioSource.PlayOneShot(lightingStrikeClip);
     }
 
     private float RandomPitch()

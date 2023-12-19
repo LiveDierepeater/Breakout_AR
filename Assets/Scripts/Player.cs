@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private GameManager gameManager;
     private new Rigidbody2D rigidbody2D;
+    private SoundManager soundManager;
 
     public Ball standardBall;
     public LightingStrike lightingStrike;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -58,6 +60,10 @@ public class Player : MonoBehaviour
             
             Destroy(currentBall.gameObject);
             gameManager.UnsubscribeBall(currentBall);
+            
+            // Plays Sound of Lighting Strike
+            soundManager.PlayLightingStrikeSound();
+            
             StartCoroutine(nameof(EnableLightingStrike));
         }
         
@@ -138,6 +144,7 @@ public class Player : MonoBehaviour
     public IEnumerator EnableLightingStrike()
     {
         // Active lighting and do stuff
+        yield return new WaitForSeconds(0.5f);
         lightingStrike.gameObject.SetActive(true);
         
         // Deactivate after time

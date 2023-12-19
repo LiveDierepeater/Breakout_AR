@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3613832104617208304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4030565673879143548}
+  - component: {fileID: 2781455377060894759}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4030565673879143548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613832104617208304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2781455377060894759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613832104617208304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9fa887545b47f54a910b5e331faf905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTheme: {fileID: 8300000, guid: 3fa1bc58af7a412439d734d0bdaf7e6f, type: 3}
+  hitSound_normal: {fileID: 8300000, guid: bf85aa5d872dae947a33607c11835485, type: 3}
+  hitSound_critical: {fileID: 8300000, guid: 01a25b51b581c7b41b82a89c6169c5ad, type: 3}
+  playerHitSound_normal: {fileID: 8300000, guid: f42e6f2bc5285d140a259a0fe4b44ceb, type: 3}
+  coinSound_normal: {fileID: 8300000, guid: 8b061855748280543a124b7c99048174, type: 3}
+  buySound: {fileID: 8300000, guid: 32a60e77d64c8204bbdfaee5d1bb996d, type: 3}
+  damp_transition_01: {fileID: 8300000, guid: 290976c230149374d91b1c8a3f808dad, type: 3}
+  damp_transition_02: {fileID: 8300000, guid: 6ae69dce4119c724189dc0d7e41e7821, type: 3}
+  lightingStrikeClip: {fileID: 8300000, guid: f58e4f55af50a5a40aad9e1c9b341efe, type: 3}
+  bounceSounds:
+  - {fileID: 8300000, guid: f56523dcf4defab419650726ccc491f0, type: 3}
+  - {fileID: 8300000, guid: c7e33775ae9a20b43809bd63582d0e0e, type: 3}
+  - {fileID: 8300000, guid: 7c08dd0f27cf21d40afcfe6671caa863, type: 3}
+  - {fileID: 8300000, guid: d19ec8ef29e29b643bb70d050c677d1e, type: 3}
+  - {fileID: 8300000, guid: 5bea2efe4f24e6443826beca75943206, type: 3}
+  randomPitchAmount: 0.2
+  mainCamera: {fileID: 8821466966201748103, guid: bf72fc96268127444bbcb463762db55c, type: 3}
