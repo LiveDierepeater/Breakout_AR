@@ -3,17 +3,19 @@ using UnityEngine;
 public class Brick : MonoBehaviour
 {
     public delegate void BrickHitDelegate(Brick brickThatWasHit);
+
     public event BrickHitDelegate OnBrickHit;
 
     private SpriteRenderer spriteRenderer;
     private SoundManager soundManager;
+    private LightingStrike lightingStrike;
 
     public int startHP = 1;
     public Color color;
     public int value = 1;
 
     public CriticalHitSpawner criticalHit;
-    
+
     private int currentHP;
 
     private void OnEnable()
@@ -22,6 +24,8 @@ public class Brick : MonoBehaviour
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         spriteRenderer.color = new Vector4(color.r, color.g, color.b, 1f);
         currentHP = startHP;
+
+        lightingStrike = GameObject.Find("Player").GetComponentInChildren<Player>().lightingStrike;
     }
 
     private void OnCollisionEnter2D()
@@ -37,13 +41,26 @@ public class Brick : MonoBehaviour
         }
         else
             damage = player.currentDamage;
-        
+
+        currentHP -= damage;
+        if (currentHP <= 0) DeactivateBrick();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Do nothing when not Triggered by Lighting Strike
+        if (!other.CompareTag("Attack")) return;
+
+        // Do stuff when hit by Lighting Strike
+        print("hit by Lighting");
+        int damage = lightingStrike.GetPlayersCurrentCriticalHitDamage();
         currentHP -= damage;
         if (currentHP <= 0) DeactivateBrick();
     }
 
     private void DeactivateBrick()
     {
+        print("got deactivate");
         gameObject.SetActive(false);
         OnBrickHit?.Invoke(this);
     }

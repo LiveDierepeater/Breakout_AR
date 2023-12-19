@@ -68,6 +68,8 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Attack")) return; // When ball collides with lighting strike
+        
         OnBallOut?.Invoke();
         gameManager.UnsubscribeBall(this);
         Destroy(gameObject);

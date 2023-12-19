@@ -79,6 +79,7 @@ public class UpgradeUI : MonoBehaviour
             case true: // game is paused
                 gameObject.SetActive(true);
                 soundManager.DampSound();
+                player.lightingStrike.gameObject.SetActive(false); // Deactivates Lighting Strike Attack
                 break;
             
             case false: // game goes on

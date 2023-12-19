@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
 
     public Ball standardBall;
+    public LightingStrike lightingStrike;
     
     public PlayerData.PlayerData playerData;
     
@@ -48,9 +49,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+            lightingStrike.gameObject.SetActive(true);
+        
         ReadInput();
         return;
-
+        
         void ReadInput()
         {
             input = Input.GetAxis("Horizontal");
