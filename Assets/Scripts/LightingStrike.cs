@@ -1,14 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class LightingStrike : MonoBehaviour
 {
     private Player player;
+    private GameManager gameManager;
 
     public int strikeDamage;
 
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponentInChildren<GameManager>();
         strikeDamage = player.currentCriticalHitDamage;
     }
 

@@ -52,7 +52,6 @@ public class Brick : MonoBehaviour
         if (!other.CompareTag("Attack")) return;
 
         // Do stuff when hit by Lighting Strike
-        print("hit by Lighting");
         int damage = lightingStrike.GetPlayersCurrentCriticalHitDamage();
         currentHP -= damage;
         if (currentHP <= 0) DeactivateBrick();
@@ -60,7 +59,6 @@ public class Brick : MonoBehaviour
 
     private void DeactivateBrick()
     {
-        print("got deactivate");
         gameObject.SetActive(false);
         OnBrickHit?.Invoke(this);
     }

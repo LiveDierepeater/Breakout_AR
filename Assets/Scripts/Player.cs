@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,7 +22,7 @@ public class Player : MonoBehaviour
     public int currentLoot;
     public Vector3 currentPlayerScale;
 
-    private Ball currentBall;
+    public Ball currentBall;
     
     private bool internalAnchored;
     private float input;
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
             
             Destroy(currentBall.gameObject);
             gameManager.UnsubscribeBall(currentBall);
-            lightingStrike.gameObject.SetActive(true);
+            StartCoroutine(nameof(EnableLightingStrike));
         }
         
         ReadInput();
@@ -132,6 +133,17 @@ public class Player : MonoBehaviour
                 transform.localScale -= Vector3.right * 0.25f;
                 break;
         }
+    }
+
+    public IEnumerator EnableLightingStrike()
+    {
+        // Active lighting and do stuff
+        lightingStrike.gameObject.SetActive(true);
+        
+        // Deactivate after time
+        yield return new WaitForSeconds(1f);
+        lightingStrike.gameObject.SetActive(false); // Deactivates Lighting Strike Attack
+        SpawnNewBall();
     }
 
     private void SetAllPlayerStatsDefault()
