@@ -287,7 +287,7 @@ public class UpgradeUI : MonoBehaviour
         
         // Add luck to player.Luck
         // In PowerUpSpawner.cs in Awake() the Spawner will get a ref to the player and grabs the "currentLuck" value and adds it to his "standardSpawnChance".
-        player.currentLuck += 0.05f;
+        player.currentLuck += 0.02f;
         print("Add Luck | Now: " + player.currentLuck);
         
         // Sound
