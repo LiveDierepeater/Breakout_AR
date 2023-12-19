@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public Vector3 currentPlayerScale;
 
     public Ball currentBall;
+
+    public bool isAttacking;
     
     private bool internalAnchored;
     private float input;
@@ -124,7 +126,7 @@ public class Player : MonoBehaviour
     
     public void ApplyPowerUp(Powerup powerUp)
     {
-        print("received PowerUp");
+        print("Received: " + powerUp.type.ToString() + " PowerUp");
 
         switch (powerUp.type)
         {
@@ -137,10 +139,35 @@ public class Player : MonoBehaviour
                 break;
             
             case Powerup.PowerupType.Shrink:
-                if (transform.localScale.x > 0.25f)
+                if (transform.localScale.x > 0.5f)
                     transform.localScale -= Vector3.right * 0.25f;
                 break;
+            
+            case Powerup.PowerupType.LightingStrike:
+                if (!isAttacking)
+                {
+                    DoLightingStrike();
+                }
+                break;
         }
+    }
+
+    private void DoLightingStrike()
+    {
+        // Lighting Strike is currently active
+        isAttacking = true;
+
+        if (currentBall != null)
+        {
+            Destroy(currentBall.gameObject);
+            gameManager.UnsubscribeBall(currentBall);
+        }
+
+        // Plays Sound of Lighting Strike
+        soundManager.PlayLightingStrikeSound();
+        
+        // Starts Lighting Strike
+        StartCoroutine(nameof(EnableLightingStrike));
     }
 
     public IEnumerator EnableLightingStrike()
@@ -153,6 +180,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         lightingStrike.gameObject.SetActive(false); // Deactivates Lighting Strike Attack
         SpawnNewBall();
+        isAttacking = false;
     }
 
     private void SetAllPlayerStatsDefault()

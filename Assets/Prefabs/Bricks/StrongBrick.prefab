@@ -246,9 +246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907a346964c202549b71a0a86a164d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standardSpawnChance: 0.05
+  standardSpawnChance: 0.3
   powerUpPrefabs:
+  - {fileID: 5313281652083076762, guid: bc9b591e45d37eb4583b95e517c0a6fe, type: 3}
   - {fileID: 5313281652083076762, guid: e616c29c0e7ec0642884b2b82b819ef8, type: 3}
+  - {fileID: 5313281652083076762, guid: 19e10579a87a9944795ad4188c690acf, type: 3}
 --- !u!1 &5972373682104471216
 GameObject:
   m_ObjectHideFlags: 0
