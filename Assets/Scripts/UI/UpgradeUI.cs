@@ -11,6 +11,7 @@ public class UpgradeUI : MonoBehaviour
     private GameManager gameManager;
     private CanvasManager canvasManager;
     private SoundManager soundManager;
+    private Stats stats;
     
     private Button okBtn;
     private Button maxHitPointsBtn;
@@ -59,6 +60,7 @@ public class UpgradeUI : MonoBehaviour
         gameManager.OnUpgradePhaseActive += SWITCH_UpgradeUI;
         gameObject.SetActive(false);
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        stats = GetComponentInChildren<Stats>();
 
         currentMaxHitPointsCosts = maxHitPointsCosts;
         currentDamageCosts = damageCosts;
@@ -76,16 +78,19 @@ public class UpgradeUI : MonoBehaviour
     {
         switch (isActive)
         {
-            case true: // game is paused
+            case true: // Game is Paused
                 gameObject.SetActive(true);
                 soundManager.DampSound();
                 
                 // Deactivates Lighting Strike Attack
                 player.lightingStrike.gameObject.SetActive(false);
                 player.isAttacking = false;
+        
+                // Update Stats
+                stats.UpdateStats();
                 break;
             
-            case false: // game goes on
+            case false: // Game goes on
                 gameObject.SetActive(false);
                 player.anchored = false;
                 soundManager.NormalizeSound();
@@ -143,6 +148,9 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentMaxHitPointsCosts += maxHitPointsCosts;
         maxHitPointsCostsUI.text = costsLabel + currentMaxHitPointsCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
     
     private void AddListener_Damage_Button()
@@ -169,6 +177,9 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentDamageCosts += damageCosts;
         damageCostsUI.text = costsLabel + currentDamageCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
     
     private void AddListener_CriticalHitDamage_Button()
@@ -195,6 +206,9 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentCriticalHitDamageCosts += criticalHitDamageCosts;
         criticalHitDamageCostsUI.text = costsLabel + currentCriticalHitDamageCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
     
     private void AddListener_PlayerScale_Button()
@@ -220,6 +234,9 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentPlayerScaleCosts += playerScaleCosts;
         playerScaleCostsUI.text = costsLabel + currentPlayerScaleCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
     
     private void AddListener_PlayerSpeed_Button()
@@ -246,6 +263,9 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentPlayerSpeedCosts += playerSpeedCosts;
         playerSpeedCostsUI.text = costsLabel + currentPlayerSpeedCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
     
     private void AddListener_CriticalHitChance_Button()
@@ -272,6 +292,9 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentCriticalHitChanceCosts += criticalHitChanceCosts;
         criticalHitChanceCostsUI.text = costsLabel + currentCriticalHitChanceCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
     
     private void AddListener_Luck_Button()
@@ -299,6 +322,9 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentLuckCosts += luckCosts;
         luckCostsUI.text = costsLabel + currentLuckCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
     
     private void AddListener_Loot_Button()
@@ -325,5 +351,8 @@ public class UpgradeUI : MonoBehaviour
         // Higher Costs
         currentLootCosts += lootCosts;
         lootCostsUI.text = costsLabel + currentLootCosts;
+        
+        // Update Stats
+        stats.UpdateStats();
     }
 }
