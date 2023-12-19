@@ -207,7 +207,7 @@ public class UpgradeUI : MonoBehaviour
         playerScaleCostsUI.text = costsLabel + currentPlayerScaleCosts;
     }
 
-    private void AddPlayerScale() // TODO: IMPLEMENT
+    private void AddPlayerScale() // NOT IMPLEMENTED
     {
         if (!pointsUI.DoPlayerHaveEnoughPoints(currentPlayerScaleCosts)) return;
         
