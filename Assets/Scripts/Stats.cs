@@ -33,8 +33,8 @@ public class Stats : MonoBehaviour
         Speed.text = LABEL_speed + player.currentPlayerSpeed;
         Damage.text = LABEL_damage + player.currentDamage;
         CriticalHitDamage.text = LABEL_criticalHitDamage + player.currentCriticalHitDamage;
-        CriticalHitChance.text = LABEL_criticalHitChance + player.currentCriticalHitChance + "%";
-        Luck.text = LABEL_luck + player.currentLuck + "%";
+        CriticalHitChance.text = LABEL_criticalHitChance + player.currentCriticalHitChance * 100 + "%";
+        Luck.text = LABEL_luck + player.currentLuck * 100 + "%";
         Loot.text = LABEL_loot + player.currentLoot;
     }
 }
