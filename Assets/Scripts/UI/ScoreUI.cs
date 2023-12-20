@@ -25,4 +25,9 @@ public class ScoreUI : MonoBehaviour
         currentPoints = newScore;
         textComponent.text = scoreLabel + " " + currentPoints;
     }
+
+    public int GetCurrentScore()
+    {
+        return currentPoints;
+    }
 }
