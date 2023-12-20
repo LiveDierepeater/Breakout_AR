@@ -232,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHP: 10
   color: {r: 0.8858634, g: 0.18039215, b: 0.9019608, a: 1}
-  value: 10
+  value: 5
   criticalHit: {fileID: 6858333820179544509, guid: 561dc3b878073aa438df43d61ef9e142, type: 3}
 --- !u!114 &6693172804512397647
 MonoBehaviour:
