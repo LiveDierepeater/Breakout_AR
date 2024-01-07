@@ -10,6 +10,7 @@ public class Leaderboard : MonoBehaviour
 
     private TextMeshProUGUI leaderName;
     private TextMeshProUGUI leaderScore;
+    private TMP_InputField newLeaderNameField;
     
     private void Awake()
     {
@@ -29,15 +30,25 @@ public class Leaderboard : MonoBehaviour
 
         leaderName = transform.Find("Leader").GetComponent<TextMeshProUGUI>();
         leaderScore = transform.Find("Highscore").GetComponent<TextMeshProUGUI>();
+        newLeaderNameField = transform.Find("InputField").GetComponent<TMP_InputField>();
+    }
+
+    private void Start()
+    {
+        UpdateLeaderboard();
     }
 
     private void OnApplicationQuit()
     {
-        // store leaderboard
+        StoreLeaderBoard();
+    }
+
+    public void StoreLeaderBoard()
+    {
         string json = leaderboardData.ToJson();
         PlayerPrefs.SetString(LeaderboardDataPlayerPrefsKey, json);
     }
-
+/*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -45,10 +56,8 @@ public class Leaderboard : MonoBehaviour
             leaderboardData.LeaderboardDataEntries.Add(new LeaderboardData.LeaderboardDataEntry("Utz", scoreUI.GetCurrentScore()));
             UpdateLeaderboard();
         }
-        
-        // TODO: Later when player dies an entry should be added.
     }
-
+*/
     private LeaderboardData.LeaderboardDataEntry GetHighestScorer()
     {
         int currentHighscore = 0;
@@ -71,5 +80,14 @@ public class Leaderboard : MonoBehaviour
     {
         leaderName.text = GetHighestScorer().name;
         leaderScore.text = GetHighestScorer().score.ToString();
+    }
+
+    public void NewLeaderboardEntry()
+    {
+        leaderboardData.LeaderboardDataEntries.Add
+            (new LeaderboardData.LeaderboardDataEntry(newLeaderNameField.text, scoreUI.GetCurrentScore()));
+        
+        UpdateLeaderboard();
+        GetComponentInParent<MenuManager>().SwitchNewEntryInputFieldOnOff();
     }
 }

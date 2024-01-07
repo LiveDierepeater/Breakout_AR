@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,13 +39,6 @@ public class GameManager : MonoBehaviour
         brickManager = GameObject.Find("BrickManager").GetComponent<BrickManager>();
     }
 
-    private void Update()
-    {
-        // Level Reset Button
-        if (Input.GetKey(KeyCode.R))
-            ReloadLevel();
-    }
-
     public void OverrideHitPoints(int currentHitPoints)
     {
         canvasManager.OverrideHitPoints(currentHitPoints);
@@ -56,11 +48,6 @@ public class GameManager : MonoBehaviour
     public void LoadNextScene()
     {
         canvasManager.NextWaveNumber();
-    }
-
-    private void ReloadLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public int GetCurrentWaveNumber()

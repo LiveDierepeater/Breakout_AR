@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private GameManager gameManager;
     private new Rigidbody2D rigidbody2D;
     private SoundManager soundManager;
+    private Leaderboard leaderboard;
 
     public Ball standardBall;
     public LightingStrike lightingStrike;
@@ -46,11 +47,27 @@ public class Player : MonoBehaviour
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        leaderboard = GameObject.Find("Canvas").GetComponentInChildren<Leaderboard>();
         
         SetAllPlayerStatsDefault();
     }
 
     private void Update()
+    {
+        //LightingStrike_DeveloperTool();
+        
+        ReadInput();
+        return;
+        
+        void ReadInput()
+        {
+            input = Input.GetAxis("Horizontal");
+
+            //Anchoring_DeveloperTool();
+        }
+    }
+
+    private void LightingStrike_DeveloperTool()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -67,24 +84,19 @@ public class Player : MonoBehaviour
             
             StartCoroutine(nameof(EnableLightingStrike));
         }
-        
-        ReadInput();
-        return;
-        
-        void ReadInput()
+    }
+
+    private void Anchoring_DeveloperTool()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            input = Input.GetAxis("Horizontal");
+            anchored = true;
+            rigidbody2D.velocity = Vector2.zero;
+        }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                anchored = true;
-                rigidbody2D.velocity = Vector2.zero;
-            }
-
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                anchored = false;
-            }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            anchored = false;
         }
     }
 
@@ -114,9 +126,16 @@ public class Player : MonoBehaviour
             currentHitPoints--;
             SpawnNewBall();
         }
-        else if (currentHitPoints == 1)
+        else if (currentHitPoints == 1)                                     // PLAYER DEAD
         {
             currentHitPoints--;
+
+            MenuManager menuManager = leaderboard.GetComponentInParent<MenuManager>();
+            
+            menuManager.isStartButtonRestartButton = false;
+            menuManager.SwitchMenuOnOff();
+            menuManager.SwitchNewEntryInputFieldOnOff();
+            
             print("DEAD!: " + currentHitPoints);
         }
         

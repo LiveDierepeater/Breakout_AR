@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     private Transform quitButton;
     private Transform leaderboard;
 
-    private bool isStartButtonRestartButton;
+    public bool isStartButtonRestartButton;
 
     private void Awake()
     {
@@ -38,6 +38,12 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        player.gameObject.SetActive(false); // Disabling player while in Menu
+        SwitchNewEntryInputFieldOnOff();
+    }
+
     public void QuitApplication()
     {
         Application.Quit();
@@ -55,12 +61,8 @@ public class MenuManager : MonoBehaviour
 
     public void RestartGame()
     {
+        leaderboard.GetComponent<Leaderboard>().StoreLeaderBoard();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    private void Start()
-    {
-        player.gameObject.SetActive(false); // Disabling player while in Menu
     }
 
     private void AddStartButtonListener()
@@ -79,12 +81,21 @@ public class MenuManager : MonoBehaviour
         isStartButtonRestartButton = true;                                        // Start Button is now Restart Button.
     }
 
-    private void SwitchMenuOnOff()
+    public void SwitchMenuOnOff()
     {
         startButton.gameObject.SetActive(!startButton.gameObject.activeSelf);
         quitButton.gameObject.SetActive(!quitButton.gameObject.activeSelf);
         leaderboard.gameObject.SetActive(!leaderboard.gameObject.activeSelf);
         
         Time.timeScale = startButton.gameObject.activeSelf ? 0 : 1;               // Timescale set to zero when in Menu.
+    }
+
+    public void SwitchNewEntryInputFieldOnOff()
+    {
+        var inputField = leaderboard.Find("InputField");
+        var newEntry = leaderboard.Find("NewEntry");
+        
+        inputField.gameObject.SetActive(!inputField.gameObject.activeSelf);
+        newEntry.gameObject.SetActive(!newEntry.gameObject.activeSelf);
     }
 }
