@@ -46,12 +46,8 @@ public class Player : MonoBehaviour
         soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-    
-    private void Start()
-    {
+        
         SetAllPlayerStatsDefault();
-        SpawnNewBall();
     }
 
     private void Update()

@@ -40,11 +40,6 @@ public class BrickManager : MonoBehaviour
     {
         gameManager = GameObject.Find(nameof(GameManager)).GetComponent<GameManager>();
     }
-    
-    private void Start()
-    {
-        SpawnNewBricks();
-    }
 
     private void Brick_OnBrickHit(Brick brick)
     {
