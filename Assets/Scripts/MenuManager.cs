@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
 
     private Transform startButton;
     private Transform quitButton;
+    private Transform leaderboard;
 
     private bool isStartButtonRestartButton;
 
@@ -22,6 +23,7 @@ public class MenuManager : MonoBehaviour
 
         startButton = transform.Find("Start");
         quitButton = transform.Find("Quit");
+        leaderboard = transform.Find("Leaderboard");
 
         AddStartButtonListener();           // Add Listener to Start-Button
     }
@@ -81,6 +83,7 @@ public class MenuManager : MonoBehaviour
     {
         startButton.gameObject.SetActive(!startButton.gameObject.activeSelf);
         quitButton.gameObject.SetActive(!quitButton.gameObject.activeSelf);
+        leaderboard.gameObject.SetActive(!leaderboard.gameObject.activeSelf);
         
         Time.timeScale = startButton.gameObject.activeSelf ? 0 : 1;               // Timescale set to zero when in Menu.
     }

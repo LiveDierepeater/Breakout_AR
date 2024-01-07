@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
@@ -7,6 +8,9 @@ public class Leaderboard : MonoBehaviour
 
     private ScoreUI scoreUI;
 
+    private TextMeshProUGUI leaderName;
+    private TextMeshProUGUI leaderScore;
+    
     private void Awake()
     {
         // load leaderboard
@@ -21,7 +25,10 @@ public class Leaderboard : MonoBehaviour
             leaderboardData = LeaderboardData.FromJson(json);
         }
         
-        scoreUI = GameObject.Find("ScoreUI").GetComponentInChildren<ScoreUI>();
+        scoreUI = GameObject.Find("Score").GetComponentInChildren<ScoreUI>();
+
+        leaderName = transform.Find("Leader").GetComponent<TextMeshProUGUI>();
+        leaderScore = transform.Find("Highscore").GetComponent<TextMeshProUGUI>();
     }
 
     private void OnApplicationQuit()
@@ -36,8 +43,33 @@ public class Leaderboard : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             leaderboardData.LeaderboardDataEntries.Add(new LeaderboardData.LeaderboardDataEntry("Utz", scoreUI.GetCurrentScore()));
+            UpdateLeaderboard();
         }
         
         // TODO: Later when player dies an entry should be added.
+    }
+
+    private LeaderboardData.LeaderboardDataEntry GetHighestScorer()
+    {
+        int currentHighscore = 0;
+
+        LeaderboardData.LeaderboardDataEntry Highscorer = null;
+
+        foreach (LeaderboardData.LeaderboardDataEntry data in leaderboardData.LeaderboardDataEntries)
+        {
+            if (data.score > currentHighscore)
+            {
+                currentHighscore = data.score;
+                Highscorer = data;
+            }
+        }
+        
+        return Highscorer;
+    }
+
+    private void UpdateLeaderboard()
+    {
+        leaderName.text = GetHighestScorer().name;
+        leaderScore.text = GetHighestScorer().score.ToString();
     }
 }
