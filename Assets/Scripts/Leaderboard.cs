@@ -37,5 +37,7 @@ public class Leaderboard : MonoBehaviour
         {
             leaderboardData.LeaderboardDataEntries.Add(new LeaderboardData.LeaderboardDataEntry("Utz", scoreUI.GetCurrentScore()));
         }
+        
+        // TODO: Later when player dies an entry should be added.
     }
 }

@@ -9,12 +9,12 @@ public class LeaderboardData
     public class LeaderboardDataEntry
     {
         public string name;
-        public int data;
+        public int score;
         
-        public LeaderboardDataEntry(string name, int data)
+        public LeaderboardDataEntry(string name, int score)
         {
             this.name = name;
-            this.data = data;
+            this.score = score;
         }
     }
 
